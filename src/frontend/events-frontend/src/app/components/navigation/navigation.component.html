@@ -1,0 +1,28 @@
+<nav ngbNav #nav="ngbNav" class="navbar-dark bg-dark d-flex justify-content-between">
+  <div ngbNavItem class="navbar-nav">
+    <ul class="nav">
+      <li ngbNavItem class="nav-item m-3">
+        <a ngbNavLink routerLink="/home" *ngIf="isLoggedIn">Home</a>
+      </li>
+      <li ngbNavItem class="nav-item m-3">
+        <a ngbNavLink class="nav-item" *ngIf="hasRole('ROLE_ORGANIZER')" routerLink="/add-new">Add new event</a>
+      </li>
+    </ul>
+  </div>
+  <div class="navbar-nav">
+    <ul class="nav d-flex">
+      <li ngbNavItem class="nav-item m-3">
+        <a ngbNavLink class="nav-link" routerLink="/login" *ngIf="!isLoggedIn" >Login</a>
+      </li>
+      <li ngbNavItem class="nav-item m-3">
+        <a ngbNavLink class="nav-link" routerLink="/register" *ngIf="!isLoggedIn" >Register</a>
+      </li>
+      <li ngbNavItem class="nav-item m-3" *ngIf="isLoggedIn">
+        <p class="nav-link">Logged in as {{currentUser.username}}</p>
+      </li>
+      <li ngbNavItem class="nav-item m-3">
+        <a ngbNavLink class="nav-link" (click)="logout()" *ngIf="isLoggedIn" routerLink="/login">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>

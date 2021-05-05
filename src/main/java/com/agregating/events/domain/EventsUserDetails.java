@@ -1,29 +1,38 @@
 package com.agregating.events.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class EventsUserDetails implements UserDetails {
 
-    private User user;
+    private Long id;
 
     private String username;
+
+    @JsonIgnore
     private String password;
-    private List<GrantedAuthority> authorities;
+
+    private String email;
+
+    private Collection<? extends GrantedAuthority> authorities;
 
     public EventsUserDetails(User user){
+        this.id = user.getId();
         this.username = user.getUsername();
-        this.password = getPassword();
-        this.authorities = Arrays.asList(user.getRoles().toUpperCase().split(","))
-                .stream()
-                .map(SimpleGrantedAuthority::new)
+        this.password = user.getPassword();
+        this.email = user.getEmail();
+        this.authorities = user.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());
+    }
+
+    public Long getId(){
+        return id;
     }
 
     @Override
@@ -39,6 +48,10 @@ public class EventsUserDetails implements UserDetails {
     @Override
     public String getUsername() {
         return username;
+    }
+
+    public String getEmail(){
+        return email;
     }
 
     @Override

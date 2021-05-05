@@ -1,0 +1,132 @@
+package com.agregating.events.controller;
+
+import com.agregating.events.domain.ERole;
+import com.agregating.events.domain.EventsUserDetails;
+import com.agregating.events.domain.Role;
+import com.agregating.events.domain.User;
+import com.agregating.events.payload.request.LoginRequest;
+import com.agregating.events.payload.request.SignupRequest;
+import com.agregating.events.payload.response.JwtResponse;
+import com.agregating.events.payload.response.MessageResponse;
+import com.agregating.events.security.jwt.JwtUtils;
+import com.agregating.events.service.EventsUserService;
+import com.agregating.events.service.RoleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.*;
+import java.util.*;
+import java.util.stream.Collectors;
+
+
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RestController
+@RequestMapping("/api/auth")
+public class AuthController {
+
+    private AuthenticationManager authenticationManager;
+
+    private EventsUserService userService;
+    private RoleService roleService;
+
+    private PasswordEncoder encoder;
+
+    private JwtUtils jwtUtils;
+
+    private final int ORGANIZER = 1;
+
+
+    @Autowired
+    public AuthController(AuthenticationManager authenticationManager,
+                          EventsUserService service,
+                          PasswordEncoder encoder,
+                          JwtUtils jwtUtils,
+                          RoleService roleService) {
+        this.authenticationManager = authenticationManager;
+        this.userService = service;
+        this.encoder = encoder;
+        this.jwtUtils = jwtUtils;
+        this.roleService = roleService;
+    }
+
+    @PostMapping("/signin")
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest){
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
+                        loginRequest.getPassword())
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = jwtUtils.generateJwtToken(authentication);
+
+        System.out.println(jwt);
+
+        EventsUserDetails userDetails = (EventsUserDetails) authentication.getPrincipal();
+
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+
+        JwtResponse jwtResponse = new JwtResponse(jwt,
+                userDetails.getId(),
+                userDetails.getUsername(),
+                userDetails.getEmail(),
+                roles);
+
+        System.out.println(jwtResponse);
+        return ResponseEntity.ok(jwtResponse);
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<?> registerUser(@RequestBody SignupRequest signupRequest){
+        int isOrganizer = signupRequest.getIsOrganizer();
+
+        if (userService.existsByUsername(signupRequest.getUsername())){
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Username already exists."));
+        }
+
+        if (userService.existsByEmail(signupRequest.getEmail())){
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Email is already in use!"));
+        }
+
+        User user = new User();
+        user.setUsername(signupRequest.getUsername());
+        user.setPassword(encoder.encode(signupRequest.getPassword()));
+        user.setEmail(signupRequest.getEmail());
+
+
+        List<Role> roles = new ArrayList<>();
+
+        if (isOrganizer == ORGANIZER){
+            roles.add(organizerRole());
+        }else{
+            roles.add(userRole());
+        }
+
+        user.setRoles(roles);
+        userService.saveUser(user);
+
+        return ResponseEntity.ok(new MessageResponse("user registered successfully"));
+    }
+
+    private Role userRole(){
+        return roleService.findByName(ERole.ROLE_USER)
+                .orElseThrow(() -> new RuntimeException("Error: Role is not found"));
+    }
+
+    private Role organizerRole(){
+        return roleService.findByName(ERole.ROLE_ORGANIZER)
+                .orElseThrow(() -> new RuntimeException("Error: Role is not found"));
+    }
+}

@@ -1,0 +1,13 @@
+<div class="container custom-grid">
+  <div *ngFor="let event of content" class="card m-3">
+    <div class="card-body">
+      <h1 class="card-title">
+        <a routerLink="/event/{{event.id}}">{{event.title}}</a>
+      </h1>
+      <p class="card-text">{{event.description.substr(0, 50) + "..."}}</p>
+      <p>Starts on: {{event.startingFrom | date:'dd MMMM yyyy'}}</p>
+      <p>Ends on: {{event.endingOn | date:'dd MMMM yyyy'}}</p>
+      <i>Posted by {{event.user.username}}</i>
+    </div>
+  </div>
+</div>

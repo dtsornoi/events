@@ -23,13 +23,8 @@ public class EventsUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> userOptional = repository.findByUsername(username);
-
-        if (!userOptional.isPresent()){
-            throw new UsernameNotFoundException("username not found");
-        }
-
-        User user = userOptional.get();
+       User user = repository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User  " + username + " not found"));
 
         return new EventsUserDetails(user);
     }

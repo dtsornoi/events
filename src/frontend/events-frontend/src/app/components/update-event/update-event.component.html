@@ -1,0 +1,56 @@
+<form (ngSubmit)="f.form.valid && onSubmit()"
+      *ngIf="!isSuccessful"
+      #f="ngForm"
+      class="container-sm">
+  <div class="border border-4 rounded p-4 border-dark m-lg-5">
+    <div class="form-group">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" id="title" name="title"
+             [(ngModel)]="oldEvent.title"
+             required
+             minlength="3" maxlength="20"
+             #title="ngModel"
+             class="form-control">
+      <div *ngIf="f.submitted && title.invalid" class="alert alert-warning">
+        <div *ngIf="title.errors.required">Title is required</div>
+        <div *ngIf="title.errors.minlength">Title must be min 3 characters</div>
+        <div *ngIf="title.errors.maxlength">Title must be max 20 characters</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea name="description" class="form-control"
+                required
+                minlength="10"
+                maxlength="100"
+                [(ngModel)]="oldEvent.description"
+                #description = "ngModel"
+                id="description">
+      </textarea>
+      <div *ngIf="f.submitted && description.invalid" class="alert alert-warning">
+        <div *ngIf="title.errors.required">Title is required</div>
+        <div *ngIf="title.errors.minlength">Title must be min 10 characters</div>
+        <div *ngIf="title.errors.maxlength">Title must be max 100 characters</div>
+      </div>
+    </div>
+    <div class="form-group d-flex justify-content-center">
+      <div class="d-flex flex-column">
+        <label for="startsOn">Starting Date</label>
+        <i>Old starting date was on: {{oldEvent.startingFrom |date:'dd MMMM yyyy'}}</i>
+        <input type="date" [(ngModel)]="oldEvent.startingFrom" #startsOn="ngModel"
+               class="form-control" id="startsOn" name="startsOn">
+      </div>
+      <div class="ml-4 d-flex flex-column">
+        <label for="endsOn">Ending Date</label>
+        <i>Old ending date was on: {{oldEvent.endingOn | date:'dd MMMM yyyy'}}</i>
+        <input type="date" [(ngModel)]="oldEvent.endingOn" #endingOn="ngModel"
+               class="form-control" id="endsOn" name="endsOn">
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Publish</button>
+  </div>
+</form>
+
+<div class="alert alert-success" *ngIf="isSuccessful">
+  <p>Event was saved Successfully</p>
+</div>

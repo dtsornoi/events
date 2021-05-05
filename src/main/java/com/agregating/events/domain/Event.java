@@ -32,5 +32,6 @@ public class Event {
     private Date endingOn;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 }
