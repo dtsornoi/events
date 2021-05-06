@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-public class EventsUserDetails implements UserDetails {
+public class CustomUserDetails implements UserDetails {
 
     private Long id;
 
@@ -21,7 +21,7 @@ public class EventsUserDetails implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public EventsUserDetails(User user){
+    public CustomUserDetails(User user){
         this.id = user.getId();
         this.username = user.getUsername();
         this.password = user.getPassword();

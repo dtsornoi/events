@@ -1,0 +1,11 @@
+<div class="container">
+    <h1>Comments: </h1>
+  <i *ngIf="comments.length === 0">No comments here yet.</i>
+  <div *ngFor="let comment of comments">
+    <div class="container">
+      <h3>{{comment.title}}</h3>
+      <p>{{comment.comment}}</p>
+      <i>Posted by {{comment.user.username}} on {{comment.postedOn | date}}</i>
+    </div>
+  </div>
+</div>

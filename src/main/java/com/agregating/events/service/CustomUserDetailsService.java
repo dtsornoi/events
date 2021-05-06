@@ -1,6 +1,6 @@
 package com.agregating.events.service;
 
-import com.agregating.events.domain.EventsUserDetails;
+import com.agregating.events.domain.CustomUserDetails;
 import com.agregating.events.domain.User;
 import com.agregating.events.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,15 +9,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
-public class EventsUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
     private UserRepository repository;
 
     @Autowired
-    public EventsUserDetailsService(UserRepository repository) {
+    public CustomUserDetailsService(UserRepository repository) {
         this.repository = repository;
     }
 
@@ -26,6 +24,6 @@ public class EventsUserDetailsService implements UserDetailsService {
        User user = repository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User  " + username + " not found"));
 
-        return new EventsUserDetails(user);
+        return new CustomUserDetails(user);
     }
 }

@@ -2,7 +2,7 @@
   <div ngbNavItem class="navbar-nav">
     <ul class="nav">
       <li ngbNavItem class="nav-item m-3">
-        <a ngbNavLink routerLink="/home" *ngIf="isLoggedIn">Home</a>
+        <a ngbNavLink routerLink="/home">Home</a>
       </li>
       <li ngbNavItem class="nav-item m-3">
         <a ngbNavLink class="nav-item" *ngIf="hasRole('ROLE_ORGANIZER')" routerLink="/add-new">Add new event</a>

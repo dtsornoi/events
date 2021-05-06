@@ -1,0 +1,24 @@
+<div class="container" *ngIf="isLoggedIn">
+  <h1>Post new comment</h1>
+  <form #f="ngForm"
+        (ngSubmit)="f.form.valid && onSubmit()">
+    <div class="d-flex flex-column">
+      <label for="title">Title</label>
+      <input type="text"
+             name="title"
+             #titleModel="ngModel"
+             [(ngModel)]="comment.title"
+             id="title">
+    </div>
+    <div class="d-flex flex-column">
+      <label for="comment">Comment</label>
+      <textarea
+        name="comment"
+        #commentModel="ngModel"
+        [(ngModel)]="comment.comment"
+        id="comment" cols="30" rows="10"></textarea>
+    </div>
+    <button class="btn btn-primary mt-3">Comment</button>
+  </form>
+  <div *ngIf="isSuccessful" class="alert alert-success">comment was added.</div>
+</div>

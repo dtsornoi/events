@@ -22,15 +22,13 @@ export class CreateNewEventComponent implements OnInit {
     private service: ContentService,
     private userService : UserService,
     private route: ActivatedRoute,
-    private router: Router,
-    private calendar: NgbCalendar
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     if (this.token.getToken()){
       this.userService.getUser(this.token.getUser().id).subscribe(data => {
         this.currentUser = data;
-        console.log(data);
       });
     }
   }

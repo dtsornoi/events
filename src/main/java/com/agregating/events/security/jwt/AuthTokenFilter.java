@@ -1,6 +1,5 @@
 package com.agregating.events.security.jwt;
 
-import com.agregating.events.service.EventsUserDetailsService;
 import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,7 +1,6 @@
 package com.agregating.events.repository;
 
 import com.agregating.events.domain.User;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

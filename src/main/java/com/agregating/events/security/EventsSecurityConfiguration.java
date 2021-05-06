@@ -4,6 +4,7 @@ import com.agregating.events.security.jwt.AuthEntryPointJwt;
 import com.agregating.events.security.jwt.AuthTokenFilter;
 import com.agregating.events.security.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -24,6 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class EventsSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    @Qualifier("customUserDetailsService")
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -35,11 +37,6 @@ public class EventsSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private AuthTokenFilter authenticationJwtTokenFilter;
-
-//    @Bean
-//    public AuthTokenFilter authenticationJwtTokenFilter(){
-//        return new AuthTokenFilter();
-//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -65,9 +62,7 @@ public class EventsSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/api/events/**").permitAll()
-                .antMatchers("/api/users/**").permitAll()
+                .antMatchers("/api/**").permitAll()
                 .anyRequest().authenticated();
 
         http

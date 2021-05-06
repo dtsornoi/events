@@ -26,4 +26,8 @@ export class ContentService {
   delete(id): Observable<any>{
     return this.http.delete(`${API_URL}/event/${id}`);
   }
+
+  updateEvent(id, event): Observable<any>{
+    return this.http.put(`${API_URL}/event/${id}`, event);
+  }
 }

@@ -12,7 +12,6 @@ import {Events} from '../../model/events.module';
 export class UpdateEventComponent implements OnInit {
 
   oldEvent: Events = {};
-  newEvent: Events = {};
   isSuccessful: boolean = false;
 
   constructor(
@@ -29,11 +28,17 @@ export class UpdateEventComponent implements OnInit {
     })
   }
 
-  update(){
-
-  }
 
   onSubmit() {
-    return false;
+    if (confirm(`Are you sure you want to update event: ${this.oldEvent.title}?`))
+    this.service.updateEvent(this.oldEvent.id, this.oldEvent).subscribe(
+      data=> {
+        this.isSuccessful = true;
+      }
+    );
+  }
+
+  cancel() {
+    this.router.navigate(['home']);
   }
 }

@@ -1,7 +1,7 @@
 package com.agregating.events.controller;
 
 import com.agregating.events.domain.ERole;
-import com.agregating.events.domain.EventsUserDetails;
+import com.agregating.events.domain.CustomUserDetails;
 import com.agregating.events.domain.Role;
 import com.agregating.events.domain.User;
 import com.agregating.events.payload.request.LoginRequest;
@@ -68,7 +68,7 @@ public class AuthController {
 
         System.out.println(jwt);
 
-        EventsUserDetails userDetails = (EventsUserDetails) authentication.getPrincipal();
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)

@@ -13,6 +13,8 @@ import { CreateNewEventComponent } from './components/create-new-event/create-ne
 import {authInterceptorProviders} from './helper/auth.interceptor';
 import { EventDescriptionComponent } from './components/event-description/event-description.component';
 import { UpdateEventComponent } from './components/update-event/update-event.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { NewCommentComponent } from './components/new-comment/new-comment.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { UpdateEventComponent } from './components/update-event/update-event.com
     CreateNewEventComponent,
     EventDescriptionComponent,
     UpdateEventComponent,
+    CommentComponent,
+    NewCommentComponent,
   ],
   imports: [
     BrowserModule,

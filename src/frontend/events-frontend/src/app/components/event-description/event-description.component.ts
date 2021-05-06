@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ContentService} from '../../service/content.service';
 import {Events} from '../../model/events.module';
 import {TokenStorageService} from '../../service/token-storage.service';
+import {CommentService} from '../../service/comment.service';
 
 @Component({
   selector: 'app-event-description',
@@ -13,12 +14,13 @@ export class EventDescriptionComponent implements OnInit {
   event: Events = {};
   isLoggedIn: boolean = false;
   roles: string[] = [];
+  comment: Comment[];
 
   constructor(
     private service: ContentService,
     private route: ActivatedRoute,
     private token: TokenStorageService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -41,9 +43,11 @@ export class EventDescriptionComponent implements OnInit {
   }
 
   delete(id) {
-    this.service.delete(id).subscribe(data => {
-      this.router.navigate(['home']);
-    });
+    if (confirm('Are you sure you want to delete?')) {
+      this.service.delete(id).subscribe(data => {
+        this.router.navigate(['home']);
+      });
+    }
   }
 
   updateLink(id: number) {

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "comments")
@@ -22,4 +23,11 @@ public class Comment {
 
     @Column(name = "comment")
     private String comment;
+
+    @Column(name = "posted_on")
+    private Date postedOn;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
