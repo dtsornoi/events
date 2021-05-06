@@ -1,7 +1,7 @@
 package com.agregating.events.controller;
 
 import com.agregating.events.domain.User;
-import com.agregating.events.service.EventsUserService;
+import com.agregating.events.service.CustomUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +14,10 @@ import java.util.Optional;
 @RequestMapping("/api/users")
 public class UserRestController {
 
-    private EventsUserService service;
+    private CustomUserService service;
 
     @Autowired
-    public UserRestController(EventsUserService service) {
+    public UserRestController(CustomUserService service) {
         this.service = service;
     }
 
@@ -28,6 +28,5 @@ public class UserRestController {
         return optionalUser
                 .map(user -> new ResponseEntity<>(user, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-
     }
 }

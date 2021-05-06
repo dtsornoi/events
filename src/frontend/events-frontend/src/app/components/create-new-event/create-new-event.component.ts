@@ -5,7 +5,6 @@ import {ContentService} from '../../service/content.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../model/user.module';
 import {UserService} from '../../service/user.service';
-import {NgbCalendar, NgbDate, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-create-new-event',

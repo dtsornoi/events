@@ -9,7 +9,7 @@ import com.agregating.events.payload.request.SignupRequest;
 import com.agregating.events.payload.response.JwtResponse;
 import com.agregating.events.payload.response.MessageResponse;
 import com.agregating.events.security.jwt.JwtUtils;
-import com.agregating.events.service.EventsUserService;
+import com.agregating.events.service.CustomUserService;
 import com.agregating.events.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +33,7 @@ public class AuthController {
 
     private AuthenticationManager authenticationManager;
 
-    private EventsUserService userService;
+    private CustomUserService userService;
     private RoleService roleService;
 
     private PasswordEncoder encoder;
@@ -45,7 +45,7 @@ public class AuthController {
 
     @Autowired
     public AuthController(AuthenticationManager authenticationManager,
-                          EventsUserService service,
+                          CustomUserService service,
                           PasswordEncoder encoder,
                           JwtUtils jwtUtils,
                           RoleService roleService) {

@@ -1,6 +1,7 @@
 package com.agregating.events.controller;
 
 import com.agregating.events.domain.Event;
+import com.agregating.events.domain.User;
 import com.agregating.events.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,10 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,5 +79,20 @@ public class EventRestController {
         }else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @PostMapping("/subscribe/{id}")
+    public ResponseEntity<Event> subscribeUserToEvent(@PathVariable("id") long id,
+                                                     @RequestBody User user){
+        Event event = service.addSubscriber(id, user);
+        return new ResponseEntity<>(event, HttpStatus.OK);
+    }
+
+    @PostMapping("/unsubscribe/{id}")
+    public ResponseEntity<HttpStatus> deleteSubscriber(@PathVariable("id") long id,
+                                                  @RequestBody User user){
+        service.deleteSubscriber(id, user);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -1,6 +1,7 @@
 package com.agregating.events.service;
 
 import com.agregating.events.domain.Event;
+import com.agregating.events.domain.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,4 +19,8 @@ public interface EventService {
     boolean deleteEvent(Long id);
 
     void deleteAll();
+
+    Event addSubscriber(long id ,User user);
+
+    Event deleteSubscriber(long id, User user);
 }

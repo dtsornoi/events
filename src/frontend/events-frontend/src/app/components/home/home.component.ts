@@ -23,5 +23,17 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+  converter(text:string, start: number, end:number){
+    if (text != null){
+      return text.substr(start, end);
+    }
+  }
 
+  ifNullShowUndefined(text: string): string {
+    if (text != null){
+      return text;
+    }
+
+    return undefined;
+  }
 }

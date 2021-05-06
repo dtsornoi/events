@@ -7,4 +7,5 @@ export class Events {
   startingFrom?: Date;
   endingOn?: Date;
   user?: User;
+  subscribedUsers?: User [];
 }

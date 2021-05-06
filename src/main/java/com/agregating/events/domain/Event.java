@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "events")
@@ -37,4 +38,10 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "event_users",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<User> subscribedUsers;
 }

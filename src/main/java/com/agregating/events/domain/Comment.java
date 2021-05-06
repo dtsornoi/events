@@ -27,7 +27,11 @@ public class Comment {
     @Column(name = "posted_on")
     private Date postedOn;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "event_id")
+    private Event event;
 }

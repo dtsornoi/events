@@ -1,20 +1,22 @@
 package com.agregating.events.service;
 
+import com.agregating.events.domain.Event;
 import com.agregating.events.domain.User;
 import com.agregating.events.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EventsUserServiceImplementation implements EventsUserService{
+public class CustomUserServiceImplementation implements CustomUserService {
 
     private UserRepository repository;
 
     @Autowired
-    public EventsUserServiceImplementation(UserRepository repository) {
+    public CustomUserServiceImplementation(UserRepository repository) {
         this.repository = repository;
     }
 

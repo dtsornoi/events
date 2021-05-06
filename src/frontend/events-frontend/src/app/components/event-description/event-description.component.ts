@@ -3,7 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ContentService} from '../../service/content.service';
 import {Events} from '../../model/events.module';
 import {TokenStorageService} from '../../service/token-storage.service';
-import {CommentService} from '../../service/comment.service';
+import {User} from '../../model/user.module';
+import {UserService} from '../../service/user.service';
 
 @Component({
   selector: 'app-event-description',
@@ -15,25 +16,43 @@ export class EventDescriptionComponent implements OnInit {
   isLoggedIn: boolean = false;
   roles: string[] = [];
   comment: Comment[];
+  isSubscribed: boolean = false;
+  currentUser: User = {};
+  users: User [];
+  eventId;
 
   constructor(
     private service: ContentService,
     private route: ActivatedRoute,
     private token: TokenStorageService,
     private router: Router,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
-    if (this.token.getToken()){
+    if (this.token.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.token.getUser().roles;
+      this.userService.getUser(this.token.getUser().id).subscribe(
+        data => {
+          this.currentUser = data;
+        }
+      );
     }
 
-    const id = this.route.snapshot.paramMap.get('id');
-    this.service.getOneEvent(id).subscribe(data => {
-
+    this.eventId = this.route.snapshot.paramMap.get('id');
+    this.service.getOneEvent(this.eventId).subscribe(data => {
       this.event = data;
-    })
+      this.users = this.event.subscribedUsers;
+
+      if (this.users.length != 0){
+        for (let user of this.users){
+          if (user.id === this.currentUser.id){
+            this.isSubscribed = true;
+          }
+        }
+      }
+    });
   }
 
   hasRole(authority){
@@ -52,5 +71,23 @@ export class EventDescriptionComponent implements OnInit {
 
   updateLink(id: number) {
     this.router.navigate([`update/${id}`])
+  }
+
+  subscribe() {
+    this.service.addSubscriber(this.event.id, this.currentUser).subscribe(
+      data => {
+        this.isSubscribed = true;
+        window.location.reload();
+      }
+    )
+  }
+
+  unSubscribe() {
+    this.service.deleteSubscriber(this.event.id, this.currentUser).subscribe(
+      data => {
+        this.isSubscribed = false;
+        window.location.reload();
+      }
+    )
   }
 }

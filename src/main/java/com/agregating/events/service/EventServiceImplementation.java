@@ -1,17 +1,15 @@
 package com.agregating.events.service;
 
 import com.agregating.events.domain.Event;
+import com.agregating.events.domain.User;
 import com.agregating.events.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.SimpleDateFormat;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 @Service
 public class EventServiceImplementation implements EventService{
@@ -27,10 +25,7 @@ public class EventServiceImplementation implements EventService{
     @Transactional
     public List<Event> findAllEvents() {
 
-        return repository.findAll()
-                .stream()
-                .sorted(Comparator.comparing(Event::getTitle))
-                .collect(Collectors.toList());
+        return repository.findAll();
     }
 
     @Override
@@ -81,5 +76,26 @@ public class EventServiceImplementation implements EventService{
     @Transactional
     public void deleteAll() {
         repository.deleteAll();
+    }
+
+    @Override
+    public Event addSubscriber(long id, User user) {
+        Event event = findEventById(id)
+                .orElseThrow(() -> new RuntimeException("Event not found"));
+        List<User> users = event.getSubscribedUsers();
+        users.add(user);
+        event.setSubscribedUsers(users);
+
+        return saveEvent(event);
+    }
+
+    @Override
+    public Event deleteSubscriber(long id, User user) {
+        Event event = findEventById(id)
+                .orElseThrow(() -> new RuntimeException("Event not found"));
+        List<User> users = event.getSubscribedUsers();
+        users.remove(user);
+        event.setSubscribedUsers(users);
+        return saveEvent(event);
     }
 }
