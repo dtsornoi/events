@@ -24,6 +24,10 @@ public class EventRestController {
         this.service = service;
     }
 
+    /**
+     * GET: <code>/all-events</code>
+     * @return List of all events stored in DB
+     */
     @GetMapping("/all-events")
     public ResponseEntity<List<Event>> getAllEvents(){
         List<Event> events = service.findAllEvents();
@@ -35,6 +39,11 @@ public class EventRestController {
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
 
+    /**
+     * GET: <code>/event/id</code>
+     * @param id of the event to be retrieved from DB
+     * @return Event requested from client side
+     */
     @GetMapping("/event/{id}")
     public ResponseEntity<Event> findEventById(@PathVariable("id") long id){
         Optional<Event> eventOptional = service.findEventById(id);
@@ -44,6 +53,11 @@ public class EventRestController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    /**
+     * POST: <code>/save-event</code>
+     * @param event from client side to be persisted to DB
+     * @return response and persisted event
+     */
     @PostMapping("/save-event")
     @PreAuthorize("hasRole('ORGANIZER')")
     public ResponseEntity<Event> saveEvent(@RequestBody Event event){
@@ -59,6 +73,12 @@ public class EventRestController {
         return new ResponseEntity<>(upcomingEvent, HttpStatus.CREATED);
     }
 
+    /**
+     * PUT: <code>/event/id</code>
+     * @param id of the old Event stored in DB
+     * @param event body of the event to be updated in the old event
+     * @return updated old event
+     */
     @PutMapping("/event/{id}")
     @PreAuthorize("hasRole('ORGANIZER')")
     public ResponseEntity<Event> updateEvent(@PathVariable("id") long id,
@@ -70,6 +90,11 @@ public class EventRestController {
         return new ResponseEntity<>(newEvent, HttpStatus.OK);
     }
 
+    /**
+     * DELETE: <code>/event/id</code>
+     * @param id of the event to be deleted from DB
+     * @return response if event was deleted
+     */
     @DeleteMapping("/event/{id}")
     @PreAuthorize("hasRole('ORGANIZER')")
     public ResponseEntity<HttpStatus> deleteEvent(@PathVariable("id") long id){
@@ -81,6 +106,12 @@ public class EventRestController {
         }
     }
 
+    /**
+     * POST: <code>/subscribe/id</code>
+     * @param id of the current selected event from client side
+     * @param user current user that wishes to be subscribed to event
+     * @return event with subscribed users in it
+     */
     @PostMapping("/subscribe/{id}")
     public ResponseEntity<Event> subscribeUserToEvent(@PathVariable("id") long id,
                                                      @RequestBody User user){
@@ -88,6 +119,12 @@ public class EventRestController {
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 
+    /**
+     * POST: <code>/unsubscribe/id</code>
+     * @param id of the current selected event on client side
+     * @param user to be unsubscribed from the event
+     * @return event with list of users subscribed to event
+     */
     @PostMapping("/unsubscribe/{id}")
     public ResponseEntity<HttpStatus> deleteSubscriber(@PathVariable("id") long id,
                                                   @RequestBody User user){

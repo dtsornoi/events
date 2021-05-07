@@ -56,6 +56,11 @@ public class AuthController {
         this.roleService = roleService;
     }
 
+    /**
+     * Post: <code>/signin</code>
+     * @param loginRequest payload from clientside
+     * @return jwtResponse with token and user
+     */
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest){
         Authentication authentication = authenticationManager.authenticate(
@@ -84,6 +89,11 @@ public class AuthController {
         return ResponseEntity.ok(jwtResponse);
     }
 
+    /**
+     * Post: <code>/signup</code>
+     * @param signupRequest from clientside form
+     * @return response message if registration was successful
+     */
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signupRequest){
         int isOrganizer = signupRequest.getIsOrganizer();

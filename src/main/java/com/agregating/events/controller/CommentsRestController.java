@@ -21,6 +21,10 @@ public class CommentsRestController {
         this.service = service;
     }
 
+    /**
+     * GET: <code>/comments</code>
+     * @return List of all comments stored in DB
+     */
     @GetMapping("/comments")
     public ResponseEntity<List<Comment>> getAllComments(){
         List<Comment> comments = service.findAllComments();
@@ -32,7 +36,11 @@ public class CommentsRestController {
         }
     }
 
-
+    /**
+     * POST: <code>/comments</code>
+     * @param comment Comment.class from client side form to be saved in DB
+     * @return created new Comment
+     */
     @PostMapping("/comments")
     public ResponseEntity<Comment> saveComment(@RequestBody Comment comment){
         List<Comment> comments = service.findAllComments();
@@ -51,6 +59,11 @@ public class CommentsRestController {
         return new ResponseEntity<>(upcomingComment, HttpStatus.CREATED);
     }
 
+    /**
+     * DELETE: <code>/comments/id</code>
+     * @param id of the Comment.class to be deleted from DB
+     * @return ResponseEntity.ok if Comment was deleted or ResponseEntity.notFound if does not exist in DB
+     */
     @DeleteMapping("/comments/{id}")
     public ResponseEntity<HttpStatus> deleteComment(@PathVariable("id") long id){
         if (service.deleteComment(id)){

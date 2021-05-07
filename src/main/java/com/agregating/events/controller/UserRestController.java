@@ -21,6 +21,11 @@ public class UserRestController {
         this.service = service;
     }
 
+    /**
+     * GET: <code>/id</code>
+     * @param id of requested user
+     * @return User.class stored in DB requested from client side
+     */
     @GetMapping("/{id}")
     public ResponseEntity<User> findByUsername(@PathVariable("id") long id){
         Optional<User> optionalUser = service.findById(id);
