@@ -44,8 +44,6 @@ export class NewCommentComponent implements OnInit {
         }
       );
     }
-
-    console.log(this.eventId)
   }
 
   onSubmit() {

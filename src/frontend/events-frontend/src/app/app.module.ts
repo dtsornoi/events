@@ -15,6 +15,7 @@ import { EventDescriptionComponent } from './components/event-description/event-
 import { UpdateEventComponent } from './components/update-event/update-event.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { NewCommentComponent } from './components/new-comment/new-comment.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NewCommentComponent } from './components/new-comment/new-comment.compon
     UpdateEventComponent,
     CommentComponent,
     NewCommentComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

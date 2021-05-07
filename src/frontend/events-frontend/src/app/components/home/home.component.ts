@@ -10,6 +10,7 @@ import {Events} from '../../model/events.module';
 export class HomeComponent implements OnInit {
 
   content: Events []= [];
+  searchText: string = '';
 
   constructor(private service: ContentService) { }
 

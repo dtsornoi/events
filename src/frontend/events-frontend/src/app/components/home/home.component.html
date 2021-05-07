@@ -1,5 +1,12 @@
-<div class="container custom-grid">
-  <div *ngFor="let event of content" class="card m-3">
+<div class="mt-2">
+  <div class="form-group container">
+    <label for="search-text">Search by Title</label>
+    <input type="email" class="form-control" id="search-text" aria-describedby="search-text"
+           [(ngModel)]="searchText" placeholder="Enter title to search"
+           autofocus>
+  </div>
+<div class="container custom-grid card">
+  <div *ngFor="let event of content | filter: searchText" class="card m-3">
     <div class="card-body">
       <h1 class="card-title">
         <a routerLink="/event/{{event.id}}">{{event.title}}</a>
@@ -10,4 +17,5 @@
       <i>Posted by {{ifNullShowUndefined(event.user.username)}}</i>
     </div>
   </div>
+</div>
 </div>
