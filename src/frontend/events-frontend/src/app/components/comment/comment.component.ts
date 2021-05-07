@@ -20,7 +20,7 @@ export class CommentComponent implements OnInit {
       data => {
         this.comments = data;
 
-        this.comments = this.comments.filter(data => data.event.id == this.eventId);
+        this.comments = this.comments.filter(data => data.event?.id == this.eventId);
       }
     )
   }

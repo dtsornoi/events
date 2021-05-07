@@ -36,6 +36,11 @@ public class CommentsRestController {
     @PostMapping("/comments")
     public ResponseEntity<Comment> saveComment(@RequestBody Comment comment){
         List<Comment> comments = service.findAllComments();
+
+        if(comments.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
         for (Comment singleComment : comments){
             if (singleComment.equals(comment)){
                 return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);

@@ -49,8 +49,8 @@ public class EventRestController {
     public ResponseEntity<Event> saveEvent(@RequestBody Event event){
 
         List<Event> events = service.findAllEvents();
-        for (Event currEvent : events){
-            if (currEvent.equals(event)){
+         for (Event currEvent : events){
+                if (currEvent.equals(event)){
                 return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
             }
         }
