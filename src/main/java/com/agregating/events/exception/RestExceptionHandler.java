@@ -5,6 +5,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+/**
+ * Custom exception handler
+ *
+ * @author Dmitri Tšornõi
+ */
+
 @ControllerAdvice
 public class RestExceptionHandler {
 

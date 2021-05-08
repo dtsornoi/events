@@ -1,9 +1,7 @@
 package com.agregating.events.service;
 
-import com.agregating.events.domain.Event;
 import com.agregating.events.domain.User;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface CustomUserService {
@@ -13,7 +11,7 @@ public interface CustomUserService {
 
     Optional<User> findById(long id);
 
-    void saveUser(User user);
+    User saveUser(User user);
 
     Boolean existsByUsername(String username);
 

@@ -9,6 +9,12 @@ import org.springframework.stereotype.Component;
 
 import java.util.logging.Logger;
 
+/**
+ * AOP class for logging
+ *
+ * @author Dmitri Tšornõi
+ */
+
 @Aspect
 @Component
 public class LoggingAspect {

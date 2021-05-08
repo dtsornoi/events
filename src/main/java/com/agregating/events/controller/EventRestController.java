@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Rest Controller for Events
+ *
+ * @author Dmitri Tšornõi
+ */
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/events")

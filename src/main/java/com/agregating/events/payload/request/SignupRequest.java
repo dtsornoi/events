@@ -7,6 +7,12 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+/**
+ * POJO for registration request
+ *
+ * @author Dmitri Tšornõi
+ */
+
 @Data
 @NoArgsConstructor
 public class SignupRequest {

@@ -9,6 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+/**
+ * implementation of Role Service
+ *
+ * @author Dmitri Tšornõi
+ */
+
 @Service
 public class RoleServiceImplementation implements RoleService{
 

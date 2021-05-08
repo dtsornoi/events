@@ -5,6 +5,12 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * POJO for login request
+ *
+ * @author Dmitri Tšornõi
+ */
+
 @Data
 @NoArgsConstructor
 public class LoginRequest {

@@ -5,6 +5,11 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * POJO for storing role enums
+ *
+ *@author Dmitri Tšornõi
+ */
 @Entity
 @Table(name = "roles")
 @Data

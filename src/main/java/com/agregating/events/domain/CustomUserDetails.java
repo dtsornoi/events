@@ -8,6 +8,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+/**
+ * Class that implements UserDetails interface for usage with Spring Security
+ *
+ * @author Dmitri Tšornõi
+ */
+
 public class CustomUserDetails implements UserDetails {
 
     private Long id;

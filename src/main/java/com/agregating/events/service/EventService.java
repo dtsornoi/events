@@ -6,6 +6,12 @@ import com.agregating.events.domain.User;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * interface for Event Service
+ *
+ * @author Dmitri Tšornõi
+ */
+
 public interface EventService {
 
     List<Event> findAllEvents();

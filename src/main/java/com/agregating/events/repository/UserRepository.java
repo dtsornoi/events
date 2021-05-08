@@ -6,6 +6,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * JpaRepository implementation for User POJO
+ *
+ * @author Dmitri Tšornõi
+ */
+
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);

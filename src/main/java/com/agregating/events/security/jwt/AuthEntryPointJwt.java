@@ -11,6 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * AuthN Entry Point for JWT
+ *
+ * @author Dmitri Tšornõi
+ */
+
 @Component
 public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 

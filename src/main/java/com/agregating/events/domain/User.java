@@ -9,9 +9,12 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
+/**
+ * POJO for users
+ *
+ * @author Dmitri Tšornõi
+ */
 
 @Entity
 @Table(name = "users",

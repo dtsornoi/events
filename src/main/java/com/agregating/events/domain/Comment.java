@@ -9,6 +9,12 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * POJO for comments
+ *
+ * @author Dmitri Tšornõi
+ */
+
 @Entity
 @Table(name = "comments")
 @Data

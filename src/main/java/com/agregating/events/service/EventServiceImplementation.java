@@ -10,6 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * implementation on Event Service
+ *
+ * @author Dmitri Tšornõi
+ */
 
 @Service
 public class EventServiceImplementation implements EventService{

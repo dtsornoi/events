@@ -3,6 +3,11 @@ package com.agregating.events.payload.response;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * POJO Response for Jwt token and user
+ *
+ * @author Dmitri Tšornõi
+ */
 
 public class JwtResponse {
     private String token;

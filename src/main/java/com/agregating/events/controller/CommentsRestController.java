@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Rest controller for Comments
+ *
+ * @author Dmitri Tšornõi
+ */
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api")

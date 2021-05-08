@@ -9,6 +9,12 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+/**
+ * JWT utils class
+ *
+ * @author Dmitri Tšornõi
+ */
+
 @Component
 public class JwtUtils {
 

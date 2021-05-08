@@ -9,6 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * implementation of Comment Service
+ *
+ * @author Dmitri Tšornõi
+ */
+
 @Service
 public class CommentServiceImplementation implements CommentService{
 

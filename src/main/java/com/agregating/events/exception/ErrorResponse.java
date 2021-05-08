@@ -4,6 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * POJO class for Error Response
+ *
+ * @author Dmitri Tšornõi
+ */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

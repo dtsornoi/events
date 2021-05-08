@@ -25,6 +25,11 @@ import javax.validation.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Controller for AuthN and Registration
+ *
+ * @author Dmitri Tšornõi
+ */
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
