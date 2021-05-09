@@ -44,7 +44,7 @@ class CustomUserServiceImplementationTest {
 
     @Test
     @DisplayName("When findByUsername() called, should return User")
-    void whenFindByUsernameCalled_returnUser() {
+    void whenFindByUsernameCalled_returnOptionalOfUser() {
 
        Mockito.when(customUserService.findByUsername("user")).thenReturn((Optional.of(user)));
 
@@ -60,7 +60,7 @@ class CustomUserServiceImplementationTest {
 
     @Test
     @DisplayName("When findByEmail() called, should return user")
-    void whenFindByEmailCalled_returnUser() {
+    void whenFindByEmailCalled_returnOptionalOfUser() {
 
         Mockito.when(customUserService.findByEmail("test@mail.com")).thenReturn(Optional.of(user));
 
@@ -76,7 +76,7 @@ class CustomUserServiceImplementationTest {
 
     @Test
     @DisplayName("When findById() called, should return user")
-    void whenFindByIdCalled_ReturnUser() {
+    void whenFindByIdCalled_ReturnOptionalOfUser() {
 
         Mockito.when(customUserService.findById(1L)).thenReturn(Optional.of(user));
 
