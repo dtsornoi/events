@@ -33,7 +33,7 @@ public class UserRestController {
      * @return User.class stored in DB requested from client side
      */
     @GetMapping("/{id}")
-    public ResponseEntity<User> findByUsername(@PathVariable("id") long id){
+    public ResponseEntity<User> findById(@PathVariable("id") long id){
         Optional<User> optionalUser = service.findById(id);
 
         return optionalUser
