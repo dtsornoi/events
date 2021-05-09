@@ -18,6 +18,12 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests for EventServiceImplementation
+ *
+ * @author Dmitri Tšornõi
+ */
+
 @ExtendWith(MockitoExtension.class)
 class EventServiceImplementationTest {
 
