@@ -2,12 +2,15 @@ package com.agregating.events.service;
 
 import com.agregating.events.domain.User;
 import com.agregating.events.repository.UserRepository;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
@@ -20,8 +23,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Dmitri Tšornõi
  */
 
-@ExtendWith(SpringExtension.class)
+@ExtendWith(MockitoExtension.class)
 class CustomUserServiceImplementationTest {
+
+    private User user;
 
     @Mock
     private UserRepository userRepository;
@@ -29,12 +34,17 @@ class CustomUserServiceImplementationTest {
     @InjectMocks
     private CustomUserServiceImplementation customUserService;
 
+    @BeforeEach
+    void init(){
+        this.user = new User();
+        user.setId(1L);
+        user.setUsername("user");
+        user.setEmail("test@email.com");
+    }
+
     @Test
     @DisplayName("When findByUsername() called, should return User")
     void whenFindByUsernameCalled_returnUser() {
-        User user = new User();
-        user.setId(1L);
-        user.setUsername("user");
 
        Mockito.when(customUserService.findByUsername("user")).thenReturn((Optional.of(user)));
 
@@ -51,9 +61,6 @@ class CustomUserServiceImplementationTest {
     @Test
     @DisplayName("When findByEmail() called, should return user")
     void whenFindByEmailCalled_returnUser() {
-        User user = new User();
-        user.setId(1L);
-        user.setEmail("test@email.com");
 
         Mockito.when(customUserService.findByEmail("test@mail.com")).thenReturn(Optional.of(user));
 
@@ -70,8 +77,6 @@ class CustomUserServiceImplementationTest {
     @Test
     @DisplayName("When findById() called, should return user")
     void whenFindByIdCalled_ReturnUser() {
-        User user = new User();
-        user.setId(1L);
 
         Mockito.when(customUserService.findById(1L)).thenReturn(Optional.of(user));
 
@@ -88,9 +93,6 @@ class CustomUserServiceImplementationTest {
     @Test
     @DisplayName("When saveUser() called, should return saved user")
     void whenSaveUserCalled_returnSavedUser() {
-        User user = new User();
-        user.setId(1L);
-        user.setUsername("user");
 
         Mockito.when(customUserService.saveUser(user)).thenReturn(user);
 
@@ -105,9 +107,6 @@ class CustomUserServiceImplementationTest {
     @Test
     @DisplayName("When existsByUsernameCalled(), should return True")
     void whenExistsByUsernameCalled_shouldReturnTrue() {
-        User user = new User();
-        user.setId(1L);
-        user.setUsername("user");
 
         Mockito.when(customUserService.existsByUsername("user")).thenReturn(true);
 
@@ -119,9 +118,6 @@ class CustomUserServiceImplementationTest {
     @Test
     @DisplayName("When existsByEmail() is called, should return true")
     void whenExistsByEmailCalled_shouldReturnTrue() {
-        User user = new User();
-        user.setId(1L);
-        user.setEmail("test@mail.com");
 
         Mockito.when(customUserService.existsByEmail("test@mail.com")).thenReturn(true);
 
