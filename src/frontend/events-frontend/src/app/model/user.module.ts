@@ -5,5 +5,5 @@ export class User {
   email?: string;
   role?: number;
   events?: [];
-  comments?:[];
+  comments?: [];
 }

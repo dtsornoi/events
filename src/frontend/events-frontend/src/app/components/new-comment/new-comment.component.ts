@@ -29,10 +29,11 @@ export class NewCommentComponent implements OnInit {
     private token: TokenStorageService,
     private userService: UserService,
     private contentService: ContentService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    if (this.token.getToken()){
+    if (this.token.getToken()) {
       this.isLoggedIn = true;
       this.userService.getUser(this.token.getUser().id).subscribe(data => {
         this.currentUser = data;
@@ -55,7 +56,7 @@ export class NewCommentComponent implements OnInit {
     this.service.addNewComment(this.comment).subscribe(
       data => {
         window.location.reload();
-        }
+      }
     );
   }
 }

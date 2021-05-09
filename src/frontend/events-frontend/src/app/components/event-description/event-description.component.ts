@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ContentService} from '../../service/content.service';
 import {Events} from '../../model/events.module';
@@ -27,7 +27,8 @@ export class EventDescriptionComponent implements OnInit {
     private token: TokenStorageService,
     private router: Router,
     private userService: UserService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     if (this.token.getToken()) {
@@ -45,9 +46,9 @@ export class EventDescriptionComponent implements OnInit {
       this.event = data;
       this.users = this.event.subscribedUsers;
 
-      if (this.users.length != 0){
-        for (let user of this.users){
-          if (user.id === this.currentUser.id){
+      if (this.users.length != 0) {
+        for (let user of this.users) {
+          if (user.id === this.currentUser.id) {
             this.isSubscribed = true;
           }
         }
@@ -55,8 +56,8 @@ export class EventDescriptionComponent implements OnInit {
     });
   }
 
-  hasRole(authority){
-    for(let role of this.roles){
+  hasRole(authority) {
+    for (let role of this.roles) {
       return role === authority;
     }
   }
@@ -70,7 +71,7 @@ export class EventDescriptionComponent implements OnInit {
   }
 
   updateLink(id: number) {
-    this.router.navigate([`update/${id}`])
+    this.router.navigate([`update/${id}`]);
   }
 
   subscribe() {
@@ -79,7 +80,7 @@ export class EventDescriptionComponent implements OnInit {
         this.isSubscribed = true;
         window.location.reload();
       }
-    )
+    );
   }
 
   unSubscribe() {
@@ -88,6 +89,6 @@ export class EventDescriptionComponent implements OnInit {
         this.isSubscribed = false;
         window.location.reload();
       }
-    )
+    );
   }
 }

@@ -1,4 +1,4 @@
-import { Comment } from './comment.moule';
+import {Comment} from './comment.moule';
 
 describe('Comment', () => {
   it('should create an instance', () => {

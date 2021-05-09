@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Events} from '../../model/events.module';
 import {TokenStorageService} from '../../service/token-storage.service';
 import {ContentService} from '../../service/content.service';
@@ -16,16 +16,18 @@ export class CreateNewEventComponent implements OnInit {
   currentUser: User;
 
   events: Events = {};
+
   constructor(
     private token: TokenStorageService,
     private service: ContentService,
-    private userService : UserService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
-    if (this.token.getToken()){
+    if (this.token.getToken()) {
       this.userService.getUser(this.token.getUser().id).subscribe(data => {
         this.currentUser = data;
       });
@@ -34,7 +36,7 @@ export class CreateNewEventComponent implements OnInit {
 
   onSubmit() {
     this.events.user = this.currentUser;
-     this.service.saveEvent(this.events).subscribe(
+    this.service.saveEvent(this.events).subscribe(
       result => {
         this.isSuccessful = true;
       }

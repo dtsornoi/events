@@ -13,7 +13,8 @@ export class CommentComponent implements OnInit {
 
   constructor(
     private service: CommentService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.service.getAllComments().subscribe(
@@ -22,7 +23,7 @@ export class CommentComponent implements OnInit {
 
         this.comments = this.comments.filter(data => data.event?.id == this.eventId);
       }
-    )
+    );
   }
 
 }

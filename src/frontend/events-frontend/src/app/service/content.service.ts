@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
@@ -9,13 +9,14 @@ const API_URL = 'http://localhost:8080/api/events';
 })
 export class ContentService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getAllEvents(): Observable<any> {
     return this.http.get(`${API_URL}/all-events`);
   }
 
-  saveEvent(item): Observable<any>{
+  saveEvent(item): Observable<any> {
     return this.http.post(`${API_URL}/save-event`, item);
   }
 
@@ -23,19 +24,19 @@ export class ContentService {
     return this.http.get(`${API_URL}/event/${id}`);
   }
 
-  delete(id): Observable<any>{
+  delete(id): Observable<any> {
     return this.http.delete(`${API_URL}/event/${id}`);
   }
 
-  updateEvent(id, event): Observable<any>{
+  updateEvent(id, event): Observable<any> {
     return this.http.put(`${API_URL}/event/${id}`, event);
   }
 
-  addSubscriber(id, event): Observable<any>{
+  addSubscriber(id, event): Observable<any> {
     return this.http.post(`${API_URL}/subscribe/${id}`, event);
   }
 
-  deleteSubscriber(id, event): Observable<any>{
+  deleteSubscriber(id, event): Observable<any> {
     return this.http.post(`${API_URL}/unsubscribe/${id}`, event);
   }
 }

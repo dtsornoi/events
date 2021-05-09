@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {HomeComponent} from './components/home/home.component';
@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'add-new', component: CreateNewEventComponent},
   {path: 'event/:id', component: EventDescriptionComponent},
-  {path:'update/:id', component: UpdateEventComponent},
+  {path: 'update/:id', component: UpdateEventComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 
@@ -21,4 +21,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

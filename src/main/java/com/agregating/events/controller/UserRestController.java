@@ -20,7 +20,7 @@ import java.util.Optional;
 @RequestMapping("/api/users")
 public class UserRestController {
 
-    private CustomUserService service;
+    private final CustomUserService service;
 
     @Autowired
     public UserRestController(CustomUserService service) {

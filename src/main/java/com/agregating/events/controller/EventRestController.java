@@ -23,7 +23,7 @@ import java.util.Optional;
 @RequestMapping("/api/events")
 public class EventRestController {
 
-    private EventService service;
+    private final EventService service;
 
     @Autowired
     public EventRestController(EventService service) {

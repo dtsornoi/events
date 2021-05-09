@@ -5,17 +5,17 @@
            [(ngModel)]="searchText" placeholder="Enter title to search"
            autofocus>
   </div>
-<div class="container custom-grid card">
-  <div *ngFor="let event of content | filter: searchText" class="card m-3">
-    <div class="card-body">
-      <h1 class="card-title">
-        <a routerLink="/event/{{event.id}}">{{event.title}}</a>
-      </h1>
-      <p class="card-text">{{converter(event.description,0, 50) + "..."}}</p>
-      <p>Starts on: {{event.startingFrom | date:'dd MMMM yyyy'}}</p>
-      <p>Ends on: {{event.endingOn | date:'dd MMMM yyyy'}}</p>
-      <i>Posted by {{ifNullShowUndefined(event.user.username)}}</i>
+  <div class="container custom-grid card">
+    <div *ngFor="let event of content | filter: searchText" class="card m-3">
+      <div class="card-body">
+        <h1 class="card-title">
+          <a routerLink="/event/{{event.id}}">{{event.title}}</a>
+        </h1>
+        <p class="card-text">{{converter(event.description, 0, 50) + "..."}}</p>
+        <p>Starts on: {{event.startingFrom | date:'dd MMMM yyyy'}}</p>
+        <p>Ends on: {{event.endingOn | date:'dd MMMM yyyy'}}</p>
+        <i>Posted by {{ifNullShowUndefined(event.user.username)}}</i>
+      </div>
     </div>
   </div>
-</div>
 </div>

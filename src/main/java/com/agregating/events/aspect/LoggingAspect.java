@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 @Component
 public class LoggingAspect {
 
-    private Logger logger = Logger.getLogger(getClass().getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     @Pointcut("execution(* com.agregating.events.controller.*.*(..))")
     private void forControllerPackage(){}
@@ -46,11 +46,9 @@ public class LoggingAspect {
         }
     }
 
-    @AfterReturning(pointcut = "forAppFlow()", returning = "result")
-    public void afterReturning(JoinPoint joinPoint, Object result){
+    @AfterReturning("forAppFlow()")
+    public void afterReturning(JoinPoint joinPoint){
         String method = joinPoint.getSignature().getName();
         logger.info("@AfterReturning: from method: " + method);
-
-        logger.info("result: " + result);
     }
 }
