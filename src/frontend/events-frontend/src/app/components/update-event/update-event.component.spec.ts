@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UpdateEventComponent } from './update-event.component';
+import {UpdateEventComponent} from './update-event.component';
 
 describe('UpdateEventComponent', () => {
   let component: UpdateEventComponent;
@@ -8,9 +8,9 @@ describe('UpdateEventComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UpdateEventComponent ]
+      declarations: [UpdateEventComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

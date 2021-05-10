@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ContentService} from '../../service/content.service';
 import {Events} from '../../model/events.module';
 
@@ -9,10 +9,11 @@ import {Events} from '../../model/events.module';
 })
 export class HomeComponent implements OnInit {
 
-  content: Events []= [];
+  content: Events [] = [];
   searchText: string = '';
 
-  constructor(private service: ContentService) { }
+  constructor(private service: ContentService) {
+  }
 
   ngOnInit(): void {
     this.service.getAllEvents().subscribe(
@@ -24,14 +25,15 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-  converter(text:string, start: number, end:number){
-    if (text != null){
+
+  converter(text: string, start: number, end: number) {
+    if (text != null) {
       return text.substr(start, end);
     }
   }
 
   ifNullShowUndefined(text: string): string {
-    if (text != null){
+    if (text != null) {
       return text;
     }
 

@@ -36,14 +36,14 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    private CustomUserService userService;
-    private RoleService roleService;
+    private final CustomUserService userService;
+    private final RoleService roleService;
 
-    private PasswordEncoder encoder;
+    private final PasswordEncoder encoder;
 
-    private JwtUtils jwtUtils;
+    private final JwtUtils jwtUtils;
 
     private final int ORGANIZER = 1;
 
@@ -75,8 +75,6 @@ public class AuthController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
-
-        System.out.println(jwt);
 
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../service/auth.service';
 import {User} from '../../model/user.module';
 
@@ -16,14 +16,15 @@ export class RegisterComponent implements OnInit {
   isSelected: boolean = false;
 
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit(): void {
   }
 
   onSubmit(): void {
 
-    if (this.isSelected){
+    if (this.isSelected) {
       this.form.role = 1;
     }
 

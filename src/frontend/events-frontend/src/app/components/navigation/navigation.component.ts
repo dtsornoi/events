@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from '../../service/token-storage.service';
 import {Router} from '@angular/router';
 
@@ -16,10 +16,11 @@ export class NavigationComponent implements OnInit {
   constructor(
     private token: TokenStorageService,
     private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    if (this.token.getToken()){
+    if (this.token.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.token.getUser().roles;
       this.currentUser = this.token.getUser();
@@ -27,13 +28,13 @@ export class NavigationComponent implements OnInit {
 
   }
 
-  hasRole(authority){
-    for(let role of this.roles){
+  hasRole(authority) {
+    for (let role of this.roles) {
       return role === authority;
     }
   }
 
-  logout(){
+  logout() {
     this.token.signOut();
     window.location.reload();
   }

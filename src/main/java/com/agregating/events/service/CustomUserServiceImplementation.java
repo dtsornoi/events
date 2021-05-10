@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public class CustomUserServiceImplementation implements CustomUserService {
 
-    private UserRepository repository;
+    private final UserRepository repository;
 
     @Autowired
     public CustomUserServiceImplementation(UserRepository repository) {

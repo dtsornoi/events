@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ContentService} from '../../service/content.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TokenStorageService} from '../../service/token-storage.service';
@@ -19,23 +19,25 @@ export class UpdateEventComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private token: TokenStorageService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.service.getOneEvent(id).subscribe(data => {
       this.oldEvent = data;
-    })
+    });
   }
 
 
   onSubmit() {
-    if (confirm(`Are you sure you want to update event: ${this.oldEvent.title}?`))
-    this.service.updateEvent(this.oldEvent.id, this.oldEvent).subscribe(
-      data=> {
-        this.isSuccessful = true;
-      }
-    );
+    if (confirm(`Are you sure you want to update event: ${this.oldEvent.title}?`)) {
+      this.service.updateEvent(this.oldEvent.id, this.oldEvent).subscribe(
+        data => {
+          this.isSuccessful = true;
+        }
+      );
+    }
   }
 
   cancel() {

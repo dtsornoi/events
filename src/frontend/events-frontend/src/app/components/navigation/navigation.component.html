@@ -12,10 +12,10 @@
   <div class="navbar-nav">
     <ul class="nav d-flex">
       <li ngbNavItem class="nav-item m-3">
-        <a ngbNavLink class="nav-link" routerLink="/login" *ngIf="!isLoggedIn" >Login</a>
+        <a ngbNavLink class="nav-link" routerLink="/login" *ngIf="!isLoggedIn">Login</a>
       </li>
       <li ngbNavItem class="nav-item m-3">
-        <a ngbNavLink class="nav-link" routerLink="/register" *ngIf="!isLoggedIn" >Register</a>
+        <a ngbNavLink class="nav-link" routerLink="/register" *ngIf="!isLoggedIn">Register</a>
       </li>
       <li ngbNavItem class="nav-item m-3" *ngIf="isLoggedIn">
         <p class="nav-link">Logged in as {{currentUser.username}}</p>

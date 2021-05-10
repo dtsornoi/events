@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 import {Events} from '../model/events.module';
 
 @Pipe({
@@ -7,11 +7,11 @@ import {Events} from '../model/events.module';
 export class FilterPipe implements PipeTransform {
 
   transform(events: Events[], searchText: string): any[] {
-    if (!events){
+    if (!events) {
       return [];
     }
 
-    if(!searchText){
+    if (!searchText) {
       return events;
     }
 

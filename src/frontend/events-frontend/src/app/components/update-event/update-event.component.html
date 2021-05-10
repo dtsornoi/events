@@ -24,7 +24,7 @@
                 minlength="10"
                 maxlength="100"
                 [(ngModel)]="oldEvent.description"
-                #description = "ngModel"
+                #description="ngModel"
                 id="description">
       </textarea>
       <div *ngIf="f.submitted && description.invalid" class="alert alert-warning">
@@ -34,18 +34,18 @@
       </div>
     </div>
     <i>Please re-enter the dates if you do not wat to changes anything else.</i>
-      <div class="d-flex flex-column">
-        <label for="startsOn">Starting Date</label>
-        <i>Old starting date was on: {{oldEvent.startingFrom |date:'dd MMMM yyyy'}}</i>
-        <input type="date" [(ngModel)]="oldEvent.startingFrom" #startsOn="ngModel"
-               class="form-control" id="startsOn" name="startsOn">
-      </div>
-      <div class="mt-2 mb-2 d-flex flex-column">
-        <label for="endsOn">Ending Date</label>
-        <i>Old ending date was on: {{oldEvent.endingOn | date:'dd MMMM yyyy'}}</i>
-        <input type="date" [(ngModel)]="oldEvent.endingOn" #endingOn="ngModel"
-               class="form-control" id="endsOn" name="endsOn">
-      </div>
+    <div class="d-flex flex-column">
+      <label for="startsOn">Starting Date</label>
+      <i>Old starting date was on: {{oldEvent.startingFrom |date:'dd MMMM yyyy'}}</i>
+      <input type="date" [(ngModel)]="oldEvent.startingFrom" #startsOn="ngModel"
+             class="form-control" id="startsOn" name="startsOn">
+    </div>
+    <div class="mt-2 mb-2 d-flex flex-column">
+      <label for="endsOn">Ending Date</label>
+      <i>Old ending date was on: {{oldEvent.endingOn | date:'dd MMMM yyyy'}}</i>
+      <input type="date" [(ngModel)]="oldEvent.endingOn" #endingOn="ngModel"
+             class="form-control" id="endsOn" name="endsOn">
+    </div>
     <div class="d-flex justify-content-sm-between">
       <button class="btn btn-primary" type="submit">Update</button>
       <button class="btn btn-warning" (click)="cancel()">Cancel</button>

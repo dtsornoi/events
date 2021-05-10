@@ -18,11 +18,11 @@ import java.util.Date;
 @Component
 public class JwtUtils {
 
-    private String jwtSecret = "sringstudent";
+    private final String jwtSecret = "sringstudent";
 
-    private int jwtExpirationMs = 86400000;
+    private final int jwtExpirationMs = 86400000;
 
-    private Logger logger = LoggerFactory.getLogger(JwtUtils.class);
+    private final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
     public String generateJwtToken(Authentication authentication){
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();

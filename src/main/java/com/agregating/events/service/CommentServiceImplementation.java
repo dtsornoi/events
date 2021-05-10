@@ -18,7 +18,7 @@ import java.util.Optional;
 @Service
 public class CommentServiceImplementation implements CommentService{
 
-    private CommentRepository repository;
+    private final CommentRepository repository;
 
     @Autowired
     public CommentServiceImplementation(CommentRepository repository) {
