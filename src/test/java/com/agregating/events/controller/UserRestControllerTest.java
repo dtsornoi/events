@@ -1,6 +1,8 @@
 package com.agregating.events.controller;
 
 import com.agregating.events.domain.User;
+import com.agregating.events.payload.response.ResponseUser;
+import com.agregating.events.repository.UserRepository;
 import com.agregating.events.service.CustomUserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,7 +44,7 @@ class UserRestControllerTest {
         mockUser.setUsername("mockUser");
 
         Mockito.when(service.findById(Mockito.anyLong())).thenReturn(Optional.of(mockUser));
-        ResponseEntity<User> responseEntity = controller.findById(1L);
+        ResponseEntity<ResponseUser> responseEntity = controller.findById(1L);
 
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
         assertThat(responseEntity.getBody()).isEqualTo(mockUser);
