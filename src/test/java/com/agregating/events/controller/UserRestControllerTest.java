@@ -1,9 +1,7 @@
 package com.agregating.events.controller;
 
 import com.agregating.events.domain.User;
-import com.agregating.events.repository.UserRepository;
 import com.agregating.events.service.CustomUserService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,7 +11,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mock.web.MockHttpServletRequest;
 
 import java.util.Optional;
 
@@ -44,7 +41,6 @@ class UserRestControllerTest {
         mockUser.setId(1L);
         mockUser.setUsername("mockUser");
 
-        MockHttpServletRequest request = new MockHttpServletRequest();
         Mockito.when(service.findById(Mockito.anyLong())).thenReturn(Optional.of(mockUser));
         ResponseEntity<User> responseEntity = controller.findById(1L);
 
