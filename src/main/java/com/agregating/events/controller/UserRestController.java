@@ -1,6 +1,7 @@
 package com.agregating.events.controller;
 
 import com.agregating.events.domain.User;
+import com.agregating.events.payload.response.ResponseUser;
 import com.agregating.events.service.CustomUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,11 +34,22 @@ public class UserRestController {
      * @return User.class stored in DB requested from client side
      */
     @GetMapping("/{id}")
-    public ResponseEntity<User> findById(@PathVariable("id") long id){
+    public ResponseEntity<ResponseUser> findById(@PathVariable("id") long id){
         Optional<User> optionalUser = service.findById(id);
+        ResponseUser responseUser = new ResponseUser();
+        User user = null;
 
-        return optionalUser
-                .map(user -> new ResponseEntity<>(user, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        if (optionalUser.isPresent()){
+            user = optionalUser.get();
+            responseUser.setId(user.getId());
+            responseUser.setUsername(user.getUsername());
+            responseUser.setEmail(user.getEmail());
+            responseUser.setRoles(user.getRoles());
+
+            return new ResponseEntity<>(responseUser, HttpStatus.OK);
+        }
+
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
