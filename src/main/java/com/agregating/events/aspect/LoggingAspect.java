@@ -33,22 +33,45 @@ public class LoggingAspect {
     @Pointcut("forRepositoryPackage() || forServicePackage() || forControllerPackage()")
     private void forAppFlow(){}
 
-    @Before("forAppFlow()")
-    public void before(JoinPoint joinPoint){
+    @Before("forControllerPackage()")
+    public void beforeController(JoinPoint joinPoint){
         String method = joinPoint.getSignature().getName();
 
-        logger.info("@Before: calling method: " + method);
+        logger.info("@Before: Controller calling method: " + method);
 
-        Object[] args = joinPoint.getArgs();
-
-        for (Object argument: args){
-            logger.info("argument: " + argument);
-        }
     }
 
-    @AfterReturning("forAppFlow()")
-    public void afterReturning(JoinPoint joinPoint){
+    @AfterReturning("forControllerPackage()")
+    public void afterReturningController(JoinPoint joinPoint){
         String method = joinPoint.getSignature().getName();
-        logger.info("@AfterReturning: from method: " + method);
+        logger.info("@AfterReturning:Controller from method: " + method);
+    }
+
+    @Before("forServicePackage()")
+    public void beforeService(JoinPoint joinPoint){
+        String method = joinPoint.getSignature().getName();
+
+        logger.info("@Before: Service calling method: " + method);
+
+    }
+
+    @AfterReturning("forServicePackage()")
+    public void afterReturningService(JoinPoint joinPoint){
+        String method = joinPoint.getSignature().getName();
+        logger.info("@AfterReturning: Service from method: " + method);
+    }
+
+    @Before("forRepositoryPackage()")
+    public void beforeRepository(JoinPoint joinPoint){
+        String method = joinPoint.getSignature().getName();
+
+        logger.info("@Before: Repository calling method: " + method);
+
+    }
+
+    @AfterReturning("forRepositoryPackage()")
+    public void afterReturningRepository(JoinPoint joinPoint){
+        String method = joinPoint.getSignature().getName();
+        logger.info("@AfterReturning:Repository from method: " + method);
     }
 }
