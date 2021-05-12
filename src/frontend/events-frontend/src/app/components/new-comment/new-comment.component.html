@@ -7,19 +7,33 @@
       <input type="text"
              class="mb-3 form-control"
              name="title"
+             maxlength="20"
              #titleModel="ngModel"
              [(ngModel)]="comment.title"
              placeholder="Title of comment"
              id="title">
+      <div *ngIf="titleModel.errors" class="alert alert-warning mt-2">
+        <p *ngIf="titleModel.errors.maxlength">Max length is 20 characters</p>
+      </div>
       <textarea
         class="mb-3 form-control"
+        minlength="10"
+        maxlength="150"
         name="comment"
         placeholder="Write your comment here..."
         #commentModel="ngModel"
         [(ngModel)]="comment.comment"
         id="comment"></textarea>
     </div>
+    <div *ngIf="commentModel.errors" class="alert alert-warning mt-2">
+      <p *ngIf="commentModel.errors.minlength">Min length is 10 characters</p>
+      <p *ngIf="commentModel.errors.maxlength">Max length is 150 characters</p>
+    </div>
     <button class="btn btn-primary mt-3">Comment</button>
+    <div *ngIf="f.submitted && !isSuccessful" class="alert alert-danger mt-3">
+      <p>Failed to add comment</p>
+      <i class="text-danger">Error: {{errorMessage}}</i>
+    </div>
   </form>
   <div *ngIf="isSuccessful" class="alert alert-success">comment was added.</div>
 </div>

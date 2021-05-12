@@ -2,27 +2,28 @@
       *ngIf="!isSuccessful"
       #f="ngForm"
       class="container-sm">
-  <div class="border border-4 rounded p-4 border-dark m-lg-5">
+  <h3 class="text-center text-warning">Add new Event</h3>
+  <div class="shadow-lg p-5 m-3 rounded">
     <div class="form-group">
-      <label for="title" class="form-label">Title</label>
       <input type="text" id="title" name="title"
              [(ngModel)]="events.title"
              required
-             minlength="3" maxlength="20"
+             placeholder="Title"
+             minlength="6" maxlength="20"
              #title="ngModel"
              class="form-control">
       <div *ngIf="f.submitted && title.invalid" class="alert alert-warning">
         <div *ngIf="title.errors.required">Title is required</div>
-        <div *ngIf="title.errors.minlength">Title must be min 3 characters</div>
+        <div *ngIf="title.errors.minlength">Title must be min 6 characters</div>
         <div *ngIf="title.errors.maxlength">Title must be max 20 characters</div>
       </div>
     </div>
     <div class="form-group">
-      <label for="description">Description</label>
       <textarea name="description" class="form-control"
+                placeholder="Description"
                 required
                 minlength="10"
-                maxlength="100"
+                maxlength="150"
                 [(ngModel)]="events.description"
                 #description="ngModel"
                 id="description">
@@ -30,7 +31,7 @@
       <div *ngIf="f.submitted && description.invalid" class="alert alert-warning">
         <div *ngIf="title.errors.required">Title is required</div>
         <div *ngIf="title.errors.minlength">Title must be min 10 characters</div>
-        <div *ngIf="title.errors.maxlength">Title must be max 100 characters</div>
+        <div *ngIf="title.errors.maxlength">Title must be max 150 characters</div>
       </div>
     </div>
     <div class="form-group d-flex justify-content-center">
@@ -57,8 +58,11 @@
     </div>
     <button class="btn btn-primary" type="submit">Publish</button>
   </div>
+  <div *ngIf="!isSuccessful" class="alert alert-danger">
+    <p>Event was not saved!</p>
+    <i class="text-danger">Error: {{errorMessage}}</i>
+  </div>
 </form>
-
 <div class="alert alert-success" *ngIf="isSuccessful">
   <p>Event was saved Successfully</p>
 </div>

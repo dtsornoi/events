@@ -2,27 +2,28 @@
       *ngIf="!isSuccessful"
       #f="ngForm"
       class="container-sm">
-  <div class="border border-4 rounded p-4 border-dark m-lg-5">
+  <h3 class="text-center text-warning">Update Event: {{oldEvent.title}}</h3>
+  <div class="shadow-lg p-5 m-3 rounded">
     <div class="form-group">
-      <label for="title" class="form-label">Title</label>
+      <label for="title" class="form-label text-secondary">Title</label>
       <input type="text" id="title" name="title"
              [(ngModel)]="oldEvent.title"
              required
-             minlength="3" maxlength="20"
+             minlength="6" maxlength="20"
              #title="ngModel"
              class="form-control">
       <div *ngIf="f.submitted && title.invalid" class="alert alert-warning">
         <div *ngIf="title.errors.required">Title is required</div>
-        <div *ngIf="title.errors.minlength">Title must be min 3 characters</div>
+        <div *ngIf="title.errors.minlength">Title must be min 6 characters</div>
         <div *ngIf="title.errors.maxlength">Title must be max 20 characters</div>
       </div>
     </div>
     <div class="form-group">
-      <label for="description">Description</label>
+      <label for="description" class="text-secondary">Description</label>
       <textarea name="description" class="form-control"
                 required
                 minlength="10"
-                maxlength="100"
+                maxlength="150"
                 [(ngModel)]="oldEvent.description"
                 #description="ngModel"
                 id="description">
@@ -30,19 +31,19 @@
       <div *ngIf="f.submitted && description.invalid" class="alert alert-warning">
         <div *ngIf="title.errors.required">Title is required</div>
         <div *ngIf="title.errors.minlength">Title must be min 10 characters</div>
-        <div *ngIf="title.errors.maxlength">Title must be max 100 characters</div>
+        <div *ngIf="title.errors.maxlength">Title must be max 150 characters</div>
       </div>
     </div>
-    <i>Please re-enter the dates if you do not wat to changes anything else.</i>
+    <i class="text-warning">Please re-enter the dates even if you do not want to changes anything else.</i>
     <div class="d-flex flex-column">
-      <label for="startsOn">Starting Date</label>
-      <i>Old starting date was on: {{oldEvent.startingFrom |date:'dd MMMM yyyy'}}</i>
+      <label for="startsOn" class="text-secondary">Starting Date</label>
+      <i class="text-secondary">Old starting date was on: {{oldEvent.startingFrom |date:'dd MMMM yyyy'}}</i>
       <input type="date" [(ngModel)]="oldEvent.startingFrom" #startsOn="ngModel"
              class="form-control" id="startsOn" name="startsOn">
     </div>
     <div class="mt-2 mb-2 d-flex flex-column">
-      <label for="endsOn">Ending Date</label>
-      <i>Old ending date was on: {{oldEvent.endingOn | date:'dd MMMM yyyy'}}</i>
+      <label for="endsOn" class="text-secondary">Ending Date</label>
+      <i class="text-secondary">Old ending date was on: {{oldEvent.endingOn | date:'dd MMMM yyyy'}}</i>
       <input type="date" [(ngModel)]="oldEvent.endingOn" #endingOn="ngModel"
              class="form-control" id="endsOn" name="endsOn">
     </div>
