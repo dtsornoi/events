@@ -16,6 +16,10 @@ import {UpdateEventComponent} from './components/update-event/update-event.compo
 import {CommentComponent} from './components/comment/comment.component';
 import {NewCommentComponent} from './components/new-comment/new-comment.component';
 import {FilterPipe} from './pipes/filter.pipe';
+import {CommentService} from './service/comment.service';
+import {UserService} from './service/user.service';
+import {ContentService} from './service/content.service';
+import {TokenStorageService} from './service/token-storage.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,11 @@ import {FilterPipe} from './pipes/filter.pipe';
     NgbModule
   ],
   providers: [
-    authInterceptorProviders
+    authInterceptorProviders,
+    CommentService,
+    UserService,
+    ContentService,
+    TokenStorageService
   ],
   bootstrap: [AppComponent]
 })

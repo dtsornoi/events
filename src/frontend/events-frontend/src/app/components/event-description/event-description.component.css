@@ -1,0 +1,14 @@
+.trash {
+  height: 32px;
+  width: 32px;
+  background-image: url("src/assets/images/trash.svg");
+}
+
+.trash:hover {
+  cursor: pointer;
+  background-image: url("src/assets/images/trash_hover.svg");
+}
+
+aside {
+  width: 30%;
+}

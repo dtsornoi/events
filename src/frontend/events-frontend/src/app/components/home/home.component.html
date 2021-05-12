@@ -5,8 +5,8 @@
            autofocus>
   </div>
   <div class="container custom-grid">
-    <div *ngFor="let event of content | filter: searchText" class="m-3">
-      <div class="shadow-sm p-3 mb-5 bg-white rounded">
+    <div *ngFor="let event of content | filter: searchText" class="shadow-sm p-3 bg-white rounded m-3">
+      <div class="">
         <h3 class="card-title">
           <a routerLink="/event/{{event.id}}">{{event.title}}</a>
         </h3>
