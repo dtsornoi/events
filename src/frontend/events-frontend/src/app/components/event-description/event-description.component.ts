@@ -18,7 +18,7 @@ export class EventDescriptionComponent implements OnInit {
   comment: Comment[];
   isSubscribed: boolean = false;
   currentUser: User = {};
-  users: User [];
+  users: User [] = [];
   eventId;
 
   constructor(

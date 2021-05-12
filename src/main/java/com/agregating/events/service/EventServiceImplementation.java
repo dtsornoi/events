@@ -3,6 +3,7 @@ package com.agregating.events.service;
 import com.agregating.events.domain.Event;
 import com.agregating.events.domain.User;
 import com.agregating.events.repository.EventRepository;
+import com.agregating.events.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,10 +21,12 @@ import java.util.Optional;
 public class EventServiceImplementation implements EventService{
 
     private final EventRepository repository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public EventServiceImplementation(EventRepository repository) {
+    public EventServiceImplementation(EventRepository repository, UserRepository userRepository) {
         this.repository = repository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -91,7 +94,7 @@ public class EventServiceImplementation implements EventService{
         users.add(user);
         event.setSubscribedUsers(users);
 
-        return saveEvent(event);
+        return updateEvent(id, event);
     }
 
     @Override
@@ -99,8 +102,11 @@ public class EventServiceImplementation implements EventService{
         Event event = findEventById(id)
                 .orElseThrow(() -> new RuntimeException("Event not found"));
         List<User> users = event.getSubscribedUsers();
-        users.remove(user);
+        User currentUser = userRepository.findByUsername(user.getUsername())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        users.remove(currentUser);
         event.setSubscribedUsers(users);
-        return saveEvent(event);
+        return updateEvent(id, event);
     }
 }

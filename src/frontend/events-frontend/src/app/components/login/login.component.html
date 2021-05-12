@@ -6,8 +6,8 @@
   novalidate
   class="d-flex flex-column justify-content-center container-sm"
 >
-  <div class="border border-4 rounded p-4 border-dark m-lg-5">
-    <h1 class="text-center">Login</h1>
+  <div class="shadow-lg p-5 m-3 rounded">
+    <h1 class="text-center text-warning">Login</h1>
     <div class="form-group">
       <label for="username" class="form-label">Username</label>
       <input
@@ -20,7 +20,7 @@
         class="form-control"
       />
       <div
-        class="alert alert-warning"
+        class="alert alert-warning mt-2"
         role="alert"
         *ngIf="f.submitted && username.invalid"
       >
@@ -40,6 +40,7 @@
         class="form-control"
       />
       <div
+        class="mt-2"
         role="alert"
         *ngIf="f.submitted && password.invalid"
       >
@@ -60,7 +61,7 @@
       <div
         role="alert"
         *ngIf="f.submitted && isLoginFailed"
-        class="alert alert-danger"
+        class="alert alert-danger mt-3"
       >
         Login failed {{ errorMessage }}
       </div>
@@ -69,5 +70,5 @@
 </form>
 
 <div *ngIf="isLoggedIn" class="alert alert-success">
-  Logged in as {{ roles }}.
+  <h1>Logged in as {{user.username}} with role {{ roles }}.</h1>
 </div>

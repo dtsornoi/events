@@ -1,24 +1,39 @@
-<div class="container" *ngIf="isLoggedIn">
-  <h1>Post new comment</h1>
+<div class="container mt-5 mb-5" *ngIf="isLoggedIn">
+  <h3 class="text-center mb-2">Post new comment</h3>
   <form #f="ngForm"
+        class="shadow p-3"
         (ngSubmit)="f.form.valid && onSubmit()">
     <div class="d-flex flex-column">
-      <label for="title">Title</label>
       <input type="text"
+             class="mb-3 form-control"
              name="title"
+             maxlength="20"
              #titleModel="ngModel"
              [(ngModel)]="comment.title"
+             placeholder="Title of comment"
              id="title">
-    </div>
-    <div class="d-flex flex-column">
-      <label for="comment">Comment</label>
+      <div *ngIf="titleModel.errors" class="alert alert-warning mt-2">
+        <p *ngIf="titleModel.errors.maxlength">Max length is 20 characters</p>
+      </div>
       <textarea
+        class="mb-3 form-control"
+        minlength="10"
+        maxlength="150"
         name="comment"
+        placeholder="Write your comment here..."
         #commentModel="ngModel"
         [(ngModel)]="comment.comment"
-        id="comment" cols="30" rows="10"></textarea>
+        id="comment"></textarea>
+    </div>
+    <div *ngIf="commentModel.errors" class="alert alert-warning mt-2">
+      <p *ngIf="commentModel.errors.minlength">Min length is 10 characters</p>
+      <p *ngIf="commentModel.errors.maxlength">Max length is 150 characters</p>
     </div>
     <button class="btn btn-primary mt-3">Comment</button>
+    <div *ngIf="f.submitted && !isSuccessful" class="alert alert-danger mt-3">
+      <p>Failed to add comment</p>
+      <i class="text-danger">Error: {{errorMessage}}</i>
+    </div>
   </form>
   <div *ngIf="isSuccessful" class="alert alert-success">comment was added.</div>
 </div>

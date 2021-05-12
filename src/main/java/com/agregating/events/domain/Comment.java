@@ -7,6 +7,8 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
@@ -27,9 +29,13 @@ public class Comment {
     private long id;
 
     @Column(name = "title")
+    @NotBlank
+    @Size(max = 20)
     private String title;
 
     @Column(name = "comment")
+    @NotBlank
+    @Size(min = 10, max = 150)
     private String comment;
 
     @Column(name = "posted_on")

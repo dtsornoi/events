@@ -14,7 +14,7 @@ import {UserService} from '../../service/user.service';
 export class CreateNewEventComponent implements OnInit {
   isSuccessful = false;
   currentUser: User;
-
+  errorMessage = '';
   events: Events = {};
 
   constructor(
@@ -39,6 +39,9 @@ export class CreateNewEventComponent implements OnInit {
     this.service.saveEvent(this.events).subscribe(
       result => {
         this.isSuccessful = true;
+      }, error => {
+        this.errorMessage = error.error.message;
+        this.isSuccessful = false;
       }
     );
   }

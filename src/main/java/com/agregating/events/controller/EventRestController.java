@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,7 +67,7 @@ public class EventRestController {
      */
     @PostMapping("/save-event")
     @PreAuthorize("hasRole('ORGANIZER')")
-    public ResponseEntity<Event> saveEvent(@RequestBody Event event){
+    public ResponseEntity<Event> saveEvent(@Valid @RequestBody Event event){
 
         List<Event> events = service.findAllEvents();
          for (Event currEvent : events){
@@ -88,7 +89,7 @@ public class EventRestController {
     @PutMapping("/event/{id}")
     @PreAuthorize("hasRole('ORGANIZER')")
     public ResponseEntity<Event> updateEvent(@PathVariable("id") long id,
-                                             @RequestBody Event event){
+                                            @Valid @RequestBody Event event){
         Event newEvent = service.updateEvent(id, event);
         if (newEvent == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

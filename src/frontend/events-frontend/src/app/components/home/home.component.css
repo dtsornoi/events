@@ -12,3 +12,7 @@
   text-decoration: underline;
   color: gold;
 }
+
+.form-control {
+  border-radius: 1rem !important;
+}
