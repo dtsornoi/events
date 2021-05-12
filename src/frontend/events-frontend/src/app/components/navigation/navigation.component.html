@@ -1,27 +1,37 @@
-<nav ngbNav #nav="ngbNav" class="navbar-dark bg-dark d-flex justify-content-between">
+<nav ngbNav #nav="ngbNav" class="navbar d-flex justify-content-between shadow p-3 mb-5 bg-white rounded">
   <div ngbNavItem class="navbar-nav">
     <ul class="nav">
       <li ngbNavItem class="nav-item m-3">
-        <a ngbNavLink routerLink="/home">Home</a>
+        <a ngbNavLink routerLink="/home">
+          <div class="home"></div>
+        </a>
       </li>
       <li ngbNavItem class="nav-item m-3">
-        <a ngbNavLink class="nav-item" *ngIf="hasRole('ROLE_ORGANIZER')" routerLink="/add-new">Add new event</a>
+        <a ngbNavLink class="nav-item" *ngIf="hasRole('ROLE_ORGANIZER')" routerLink="/add-new">
+          <div class="add"></div>
+        </a>
       </li>
     </ul>
   </div>
   <div class="navbar-nav">
     <ul class="nav d-flex">
       <li ngbNavItem class="nav-item m-3">
-        <a ngbNavLink class="nav-link" routerLink="/login" *ngIf="!isLoggedIn">Login</a>
+        <a ngbNavLink class="nav-link" routerLink="/login" *ngIf="!isLoggedIn">
+          <div class="login"></div>
+        </a>
       </li>
       <li ngbNavItem class="nav-item m-3">
-        <a ngbNavLink class="nav-link" routerLink="/register" *ngIf="!isLoggedIn">Register</a>
+        <a ngbNavLink class="nav-link" routerLink="/register" *ngIf="!isLoggedIn">
+          <div class="signup"></div>
+        </a>
       </li>
       <li ngbNavItem class="nav-item m-3" *ngIf="isLoggedIn">
         <p class="nav-link">Logged in as {{currentUser.username}}</p>
       </li>
       <li ngbNavItem class="nav-item m-3">
-        <a ngbNavLink class="nav-link" (click)="logout()" *ngIf="isLoggedIn" routerLink="/login">Logout</a>
+        <a ngbNavLink class="nav-link" (click)="logout()" *ngIf="isLoggedIn" routerLink="/login">
+          <div class="logout"></div>
+        </a>
       </li>
     </ul>
   </div>

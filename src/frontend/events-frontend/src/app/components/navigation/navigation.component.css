@@ -1,0 +1,49 @@
+.home {
+  height: 32px;
+  width: 32px;
+  background-image: url("src/assets/images/home.svg");
+}
+
+.home:hover {
+  background-image: url("src/assets/images/home_hover.svg");
+}
+
+.add {
+  height: 32px;
+  width: 32px;
+  background-image: url("src/assets/images/add.svg");
+}
+
+.add:hover {
+  background-image: url("src/assets/images/add_hover.svg");
+}
+
+.login {
+  height: 32px;
+  width: 32px;
+  background-image: url("src/assets/images/login.svg");
+}
+
+.login:hover {
+  background-image: url("src/assets/images/login_hover.svg");
+}
+
+.logout {
+  height: 32px;
+  width: 32px;
+  background-image: url("src/assets/images/logout.svg");
+}
+
+.logout:hover {
+  background-image: url("src/assets/images/logout_hover.svg");
+}
+
+.signup {
+  height: 32px;
+  width: 32px;
+  background-image: url("src/assets/images/signup.svg");
+}
+
+.signup:hover {
+  background-image: url("src/assets/images/signup_hover.svg");
+}
