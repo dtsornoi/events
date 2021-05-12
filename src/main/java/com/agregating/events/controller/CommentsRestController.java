@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api")
+@RequestMapping("/api/comments")
 public class CommentsRestController {
 
     private final CommentService service;
@@ -32,7 +32,7 @@ public class CommentsRestController {
      * GET: <code>/comments</code>
      * @return List of all comments stored in DB
      */
-    @GetMapping("/comments")
+    @GetMapping("/")
     public ResponseEntity<List<Comment>> getAllComments(){
         List<Comment> comments = service.findAllComments();
 
@@ -48,7 +48,7 @@ public class CommentsRestController {
      * @param comment Comment.class from client side form to be saved in DB
      * @return created new Comment
      */
-    @PostMapping("/comments")
+    @PostMapping("/")
     public ResponseEntity<Comment> saveComment(@Valid @RequestBody Comment comment){
         List<Comment> comments = service.findAllComments();
 
@@ -71,7 +71,7 @@ public class CommentsRestController {
      * @param id of the Comment.class to be deleted from DB
      * @return ResponseEntity.ok if Comment was deleted or ResponseEntity.notFound if does not exist in DB
      */
-    @DeleteMapping("/comments/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteComment(@PathVariable("id") long id){
         if (service.deleteComment(id)){
             return new ResponseEntity<>(HttpStatus.OK);
