@@ -8,9 +8,10 @@
     </div>
     <div class="container">
       <h5>Description:</h5>
-      <p>{{event.description}}</p>
+      <p *ngIf="isLoggedIn">{{event.description}}</p>
+      <i *ngIf="!isLoggedIn">You must be logged in to see full description of the Event.</i>
     </div>
-    <div class="container">
+    <div class="container" *ngIf="isLoggedIn">
       <h5>Event is happening on:</h5>
       <p>{{event.startingFrom | date: "dd MMMM yyyy"}} - {{event.endingOn | date:"dd MMMM yyyy"}}</p>
     </div>
@@ -22,9 +23,10 @@
         <a (click)="subscribe()" class="btn btn-success" *ngIf="!isSubscribed">Subscribe</a>
         <a (click)="unSubscribe()" class="btn btn-warning" *ngIf="isSubscribed">Unsubscribe</a>
       </div>
+      <a *ngIf="!isLoggedIn" routerLink="/register" class="btn btn-success m-2">Sign Up</a>
     </div>
   </div>
-  <aside class="text-center shadow-sm p-3 mr-5 bg-white rounded w-75">
+  <aside class="text-center shadow-sm p-3 mr-5 bg-white rounded w-75" *ngIf="isLoggedIn">
     <h3>Subscribed Users</h3>
     <i *ngIf="users.length === 0">There are no subscribed users yet</i>
     <div *ngFor="let user of event.subscribedUsers">

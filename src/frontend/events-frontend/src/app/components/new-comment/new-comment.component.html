@@ -1,22 +1,23 @@
-<div class="container" *ngIf="isLoggedIn">
-  <h1>Post new comment</h1>
+<div class="container mt-5 mb-5" *ngIf="isLoggedIn">
+  <h3 class="text-center mb-2">Post new comment</h3>
   <form #f="ngForm"
+        class="shadow p-3"
         (ngSubmit)="f.form.valid && onSubmit()">
     <div class="d-flex flex-column">
-      <label for="title">Title</label>
       <input type="text"
+             class="mb-3 form-control"
              name="title"
              #titleModel="ngModel"
              [(ngModel)]="comment.title"
+             placeholder="Title of comment"
              id="title">
-    </div>
-    <div class="d-flex flex-column">
-      <label for="comment">Comment</label>
       <textarea
+        class="mb-3 form-control"
         name="comment"
+        placeholder="Write your comment here..."
         #commentModel="ngModel"
         [(ngModel)]="comment.comment"
-        id="comment" cols="30" rows="10"></textarea>
+        id="comment"></textarea>
     </div>
     <button class="btn btn-primary mt-3">Comment</button>
   </form>
