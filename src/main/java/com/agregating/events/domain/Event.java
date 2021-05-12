@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -27,9 +30,13 @@ public class Event {
     private Long id;
 
     @Column(name = "title")
+    @Size(max = 20, min = 6)
+    @NotBlank
     private String title;
 
     @Column(name = "description")
+    @NotBlank
+    @Size(min = 10, max = 150)
     private String description;
 
     @Column(name = "starting_from")
