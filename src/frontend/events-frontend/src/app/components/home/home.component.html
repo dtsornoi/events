@@ -1,19 +1,17 @@
 <div class="mt-2">
   <div class="form-group container">
-    <label for="search-text">Search by Title</label>
-    <input type="email" class="form-control" id="search-text" aria-describedby="search-text"
+    <input type="email" class="form-control shadow-lg p=3 mb-5 bg-white rounded" id="search-text" aria-describedby="search-text"
            [(ngModel)]="searchText" placeholder="Enter title to search"
            autofocus>
   </div>
-  <div class="container custom-grid card">
-    <div *ngFor="let event of content | filter: searchText" class="card m-3">
-      <div class="card-body">
-        <h1 class="card-title">
+  <div class="container custom-grid">
+    <div *ngFor="let event of content | filter: searchText" class="m-3">
+      <div class="shadow-sm p-3 mb-5 bg-white rounded">
+        <h3 class="card-title">
           <a routerLink="/event/{{event.id}}">{{event.title}}</a>
-        </h1>
-        <p class="card-text">{{converter(event.description, 0, 50) + "..."}}</p>
-        <p>Starts on: {{event.startingFrom | date:'dd MMMM yyyy'}}</p>
-        <p>Ends on: {{event.endingOn | date:'dd MMMM yyyy'}}</p>
+        </h3>
+        <p class="">{{converter(event.description, 0, 50) + "..."}}</p>
+        <p>{{event.startingFrom | date:'dd MMMM yyyy'}} - {{event.endingOn | date:'dd MMMM yyyy'}}</p>
         <i>Posted by {{ifNullShowUndefined(event.user.username)}}</i>
       </div>
     </div>
