@@ -1,4 +1,4 @@
-# Service aggregating events  
+# Work In Progress: Service aggregating events  
   
 ## Brief Description  
 This website allows the organizers to enter events and collect entries.  
