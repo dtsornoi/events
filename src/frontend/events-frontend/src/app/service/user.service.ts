@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 })
 export class UserService {
 
-  private USER_URL = '/api/users';
+  private USER_URL = '/api/users/';
 
   constructor(private http: HttpClient) {
   }

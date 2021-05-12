@@ -57,11 +57,12 @@
       </div>
     </div>
     <button class="btn btn-primary" type="submit">Publish</button>
+    <div *ngIf="f.submitted && !isSuccessful" class="alert alert-danger mt-3">
+      <p>Event was not saved!</p>
+      <i class="text-danger">Error: {{errorMessage}}</i>
+    </div>
   </div>
-  <div *ngIf="!isSuccessful" class="alert alert-danger">
-    <p>Event was not saved!</p>
-    <i class="text-danger">Error: {{errorMessage}}</i>
-  </div>
+
 </form>
 <div class="alert alert-success" *ngIf="isSuccessful">
   <p>Event was saved Successfully</p>
