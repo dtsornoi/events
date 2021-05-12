@@ -1,15 +1,19 @@
 {
   "/api/users": {
-    "target": "http://localhost:8080"
+    "target": "http://localhost:8080",
+    "secure": false
   },
 
   "/api/events": {
-    "target": "http://localhost:8080"
+    "target": "http://localhost:8080",
+    "secure": false
   },
   "/api/auth": {
-    "target": "http://localhost:8080"
+    "target": "http://localhost:8080",
+    "secure": false
   },
   "/api/comments": {
-    "target": "http://localhost:8080"
+    "target": "http://localhost:8080",
+    "secure": false
   }
 }
