@@ -30,7 +30,7 @@
       <p *ngIf="commentModel.errors.maxlength">Max length is 150 characters</p>
     </div>
     <button class="btn btn-primary mt-3">Comment</button>
-    <div *ngIf="f.submitted && !isSuccessful" class="alert alert-danger mt-3">
+    <div *ngIf="f.submitted && hasFailed" class="alert alert-danger mt-3">
       <p>Failed to add comment</p>
       <i class="text-danger">Error: {{errorMessage}}</i>
     </div>

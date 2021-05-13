@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
 })
 export class CommentService {
 
-  private COMMENT_URL = '/api/comments';
+  private COMMENT_URL = '/api/comments/';
 
   constructor(
     private http: HttpClient

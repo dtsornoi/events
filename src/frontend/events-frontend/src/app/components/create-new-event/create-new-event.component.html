@@ -12,7 +12,7 @@
              minlength="6" maxlength="20"
              #title="ngModel"
              class="form-control">
-      <div *ngIf="f.submitted && title.invalid" class="alert alert-warning">
+      <div *ngIf="f.submitted && title.invalid" class="alert alert-warning mt-3">
         <div *ngIf="title.errors.required">Title is required</div>
         <div *ngIf="title.errors.minlength">Title must be min 6 characters</div>
         <div *ngIf="title.errors.maxlength">Title must be max 20 characters</div>
@@ -21,17 +21,17 @@
     <div class="form-group">
       <textarea name="description" class="form-control"
                 placeholder="Description"
-                required
+                required="required"
                 minlength="10"
                 maxlength="150"
                 [(ngModel)]="events.description"
                 #description="ngModel"
                 id="description">
       </textarea>
-      <div *ngIf="f.submitted && description.invalid" class="alert alert-warning">
-        <div *ngIf="title.errors.required">Title is required</div>
-        <div *ngIf="title.errors.minlength">Title must be min 10 characters</div>
-        <div *ngIf="title.errors.maxlength">Title must be max 150 characters</div>
+      <div *ngIf="f.submitted && description.invalid" class="alert alert-warning mt-3">
+        <div *ngIf="description.errors.required">Title is required</div>
+        <div *ngIf="description.errors.minlength">Title must be min 10 characters</div>
+        <div *ngIf="description.errors.maxlength">Title must be max 150 characters</div>
       </div>
     </div>
     <div class="form-group d-flex justify-content-center">

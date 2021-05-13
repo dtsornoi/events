@@ -89,8 +89,13 @@
 				<version>3.0.0</version>
 				<configuration>
 					<to>
-						<image>events</image>
+						<image>docker.io/dtsonoi/events</image>
 					</to>
+					<container>
+						<mainClass>
+							com.agregating.events.EventsApplication
+						</mainClass>
+					</container>
 				</configuration>
 			</plugin>
 		</plugins>

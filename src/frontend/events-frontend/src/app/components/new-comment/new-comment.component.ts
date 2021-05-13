@@ -19,6 +19,7 @@ export class NewCommentComponent implements OnInit {
 
   comment: Comment = {};
   errorMessage = '';
+  hasFailed: boolean = false;
   isSuccessful: boolean = false;
   isLoggedIn: boolean = false;
   currentUser: User = {};
@@ -57,14 +58,11 @@ export class NewCommentComponent implements OnInit {
     this.service.addNewComment(this.comment).subscribe(
       data => {
         this.isSuccessful = true;
+        window.location.reload();
       }, error => {
         this.errorMessage = error.error.message;
-        this.isSuccessful = false;
+        this.hasFailed = true;
       }
     );
-
-    if (this.isSuccessful) {
-      window.location.reload();
-    }
   }
 }

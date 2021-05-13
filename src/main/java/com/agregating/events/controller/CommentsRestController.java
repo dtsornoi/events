@@ -53,17 +53,17 @@ public class CommentsRestController {
         List<Comment> comments = service.findAllComments();
 
         if(comments.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-
-        for (Comment singleComment : comments){
-            if (singleComment.equals(comment)){
-                return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(service.saveComment(comment), HttpStatus.CREATED);
+        }else{
+            for (Comment singleComment : comments){
+                if (singleComment.getTitle().equals(comment.getTitle())
+                        && singleComment.getComment().equals(comment.getComment())){
+                    return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+                }
             }
-        }
 
-        Comment upcomingComment =  service.saveComment(comment);
-        return new ResponseEntity<>(upcomingComment, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(service.saveComment(comment), HttpStatus.CREATED);
     }
 
     /**
@@ -71,7 +71,7 @@ public class CommentsRestController {
      * @param id of the Comment.class to be deleted from DB
      * @return ResponseEntity.ok if Comment was deleted or ResponseEntity.notFound if does not exist in DB
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/comments/{id}")
     public ResponseEntity<HttpStatus> deleteComment(@PathVariable("id") long id){
         if (service.deleteComment(id)){
             return new ResponseEntity<>(HttpStatus.OK);
