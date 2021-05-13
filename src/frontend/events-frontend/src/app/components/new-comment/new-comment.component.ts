@@ -57,13 +57,13 @@ export class NewCommentComponent implements OnInit {
     this.service.addNewComment(this.comment).subscribe(
       data => {
         this.isSuccessful = true;
-      },error => {
+      }, error => {
         this.errorMessage = error.error.message;
         this.isSuccessful = false;
       }
     );
 
-    if (this.isSuccessful){
+    if (this.isSuccessful) {
       window.location.reload();
     }
   }

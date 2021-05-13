@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from '../../service/token-storage.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -15,7 +15,8 @@ export class NavigationComponent implements OnInit {
 
   constructor(
     private token: TokenStorageService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
   }
 
@@ -37,6 +38,7 @@ export class NavigationComponent implements OnInit {
   logout() {
     this.token.signOut();
     window.location.reload();
+    this.router.navigate(['/login']);
   }
 
 }

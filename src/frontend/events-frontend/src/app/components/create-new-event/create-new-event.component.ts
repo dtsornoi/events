@@ -15,6 +15,7 @@ export class CreateNewEventComponent implements OnInit {
   isSuccessful = false;
   currentUser: User;
   errorMessage = '';
+  hasFailed = false;
   events: Events = {};
 
   constructor(
@@ -41,8 +42,12 @@ export class CreateNewEventComponent implements OnInit {
         this.isSuccessful = true;
       }, error => {
         this.errorMessage = error.error.message;
-        this.isSuccessful = false;
+        this.hasFailed = true;
       }
     );
+  }
+
+  refresh() {
+    window.location.reload();
   }
 }

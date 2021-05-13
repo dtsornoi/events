@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/comments")
+@RequestMapping("/api")
 public class CommentsRestController {
 
     private final CommentService service;
@@ -32,7 +32,7 @@ public class CommentsRestController {
      * GET: <code>/comments</code>
      * @return List of all comments stored in DB
      */
-    @GetMapping("/")
+    @GetMapping("/comments")
     public ResponseEntity<List<Comment>> getAllComments(){
         List<Comment> comments = service.findAllComments();
 
@@ -48,7 +48,7 @@ public class CommentsRestController {
      * @param comment Comment.class from client side form to be saved in DB
      * @return created new Comment
      */
-    @PostMapping("/")
+    @PostMapping("/comments")
     public ResponseEntity<Comment> saveComment(@Valid @RequestBody Comment comment){
         List<Comment> comments = service.findAllComments();
 

@@ -1,74 +1,77 @@
-<form
-  *ngIf="!isLoggedIn"
-  name="form"
-  (ngSubmit)="f.form.valid && onSubmit()"
-  #f="ngForm"
-  novalidate
-  class="d-flex flex-column justify-content-center container-sm"
->
-  <div class="shadow-lg p-5 m-3 rounded">
-    <h1 class="text-center text-warning">Login</h1>
-    <div class="form-group">
-      <label for="username" class="form-label">Username</label>
-      <input
-        type="text"
-        id="username"
-        name="username"
-        [(ngModel)]="form.username"
-        required
-        #username="ngModel"
-        class="form-control"
-      />
-      <div
-        class="alert alert-warning mt-2"
-        role="alert"
-        *ngIf="f.submitted && username.invalid"
-      >
-        Username is required!
+<div class="d-flex  flex-column justify-content-center container">
+  <form
+    *ngIf="!isLoggedIn"
+    name="form"
+    (ngSubmit)="f.form.valid && onSubmit()"
+    #f="ngForm"
+    novalidate
+    class="d-flex flex-column justify-content-center container-sm"
+  >
+    <div class="shadow-lg p-5 m-3 rounded">
+      <h1 class="text-center text-warning">Login</h1>
+      <div class="form-group">
+        <label for="username" class="form-label">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          [(ngModel)]="form.username"
+          required
+          #username="ngModel"
+          class="form-control"
+        />
+        <div
+          class="alert alert-warning mt-2"
+          role="alert"
+          *ngIf="f.submitted && username.invalid"
+        >
+          Username is required!
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="password" class="form-label">Password</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        [(ngModel)]="form.password"
-        required
-        minlength="6"
-        #password="ngModel"
-        class="form-control"
-      />
-      <div
-        class="mt-2"
-        role="alert"
-        *ngIf="f.submitted && password.invalid"
-      >
-        <div *ngIf="password.errors.required" class="alert alert-warning">Password is required</div>
-        <div *ngIf="password.errors.minlength" class="alert alert-warning">
-          Password must be at least 6 characters
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="form.password"
+          required
+          minlength="6"
+          #password="ngModel"
+          class="form-control"
+        />
+        <div
+          class="mt-2"
+          role="alert"
+          *ngIf="f.submitted && password.invalid"
+        >
+          <div *ngIf="password.errors.required" class="alert alert-warning">Password is required</div>
+          <div *ngIf="password.errors.minlength" class="alert alert-warning">
+            Password must be at least 6 characters
+          </div>
+        </div>
+      </div>
+      <div>
+        <button
+          type="submit"
+          class="btn btn-primary">
+          Login
+        </button>
+      </div>
+      <div>
+        <div
+          role="alert"
+          *ngIf="f.submitted && isLoginFailed"
+          class="alert alert-danger mt-3"
+        >
+          Login failed {{ errorMessage }}
         </div>
       </div>
     </div>
-    <div>
-      <button
-        type="submit"
-        class="btn btn-primary">
-        Login
-      </button>
-    </div>
-    <div>
-      <div
-        role="alert"
-        *ngIf="f.submitted && isLoginFailed"
-        class="alert alert-danger mt-3"
-      >
-        Login failed {{ errorMessage }}
-      </div>
-    </div>
+  </form>
+  <div *ngIf="isLoggedIn" class="alert alert-success">
+    <h1>Logged in as {{user.username}} with role {{ roles }}.</h1>
   </div>
-</form>
-
-<div *ngIf="isLoggedIn" class="alert alert-success">
-  <h1>Logged in as {{user.username}} with role {{ roles }}.</h1>
 </div>
+
+
