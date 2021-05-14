@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ContentService} from '../../service/content.service';
 import {Events} from '../../model/events.module';
@@ -20,6 +20,9 @@ export class EventDescriptionComponent implements OnInit {
   currentUser: User = {};
   users: User [] = [];
   eventId;
+  notHidden: boolean = true;
+  innerWidth: any;
+  isVisible: boolean;
 
   constructor(
     private service: ContentService,
@@ -31,9 +34,11 @@ export class EventDescriptionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.eventId = this.route.snapshot.paramMap.get('id');
     if (this.token.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.token.getUser().roles;
+
       this.userService.getUser(this.token.getUser().id).subscribe(
         data => {
           this.currentUser = data;
@@ -41,7 +46,6 @@ export class EventDescriptionComponent implements OnInit {
       );
     }
 
-    this.eventId = this.route.snapshot.paramMap.get('id');
     this.service.getOneEvent(this.eventId).subscribe(data => {
       this.event = data;
       this.users = this.event.subscribedUsers;
@@ -54,6 +58,8 @@ export class EventDescriptionComponent implements OnInit {
         }
       }
     });
+
+
   }
 
   hasRole(authority) {
@@ -90,5 +96,21 @@ export class EventDescriptionComponent implements OnInit {
         window.location.reload();
       }
     );
+  }
+
+  @HostListener('window: resize', ['$event'])
+  isMobile(event): boolean{
+    this.innerWidth = window.innerWidth;
+    let isLessThanEquals700 : boolean = this.innerWidth <= 700;
+
+    return isLessThanEquals700;
+  }
+
+  displaySubscribedUsersInMobileOrHide() {
+    this.isVisible = !this.isVisible;
+  }
+
+  showIfIsRightUser(): boolean{
+    return this.event.user.username === this.currentUser.username;
   }
 }

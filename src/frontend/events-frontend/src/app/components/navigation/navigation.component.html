@@ -25,7 +25,7 @@
           <div class="signup"></div>
         </a>
       </li>
-      <li ngbNavItem class="nav-item m-3" *ngIf="isLoggedIn">
+      <li ngbNavItem class="nav-item m-3 logged_in_as" *ngIf="isLoggedIn">
         <p class="nav-link">Logged in as {{currentUser.username}}</p>
       </li>
       <li ngbNavItem class="nav-item m-3">

@@ -1,6 +1,6 @@
-<div class="container mt-5">
+<div class="container mt-5 d-flex flex-column justify-content-center">
   <h4 class="text-center">Comments Section</h4>
-  <i *ngIf="comments.length === 0">No comments here yet.</i>
+  <i *ngIf="comments.length === 0" class="text-center">No comments here yet.</i>
   <div *ngFor="let comment of comments" class="shadow p-3 mt-5">
     <div class="container">
       <h5>{{comment.title}}</h5>

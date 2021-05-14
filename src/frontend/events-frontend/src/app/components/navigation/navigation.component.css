@@ -47,3 +47,9 @@
 .signup:hover {
   background-image: url("src/assets/images/signup_hover.svg");
 }
+
+@media (max-width: 700px) {
+  .logged_in_as{
+    display: none;
+  }
+}

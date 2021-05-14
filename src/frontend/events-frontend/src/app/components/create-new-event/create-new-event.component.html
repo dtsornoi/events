@@ -34,7 +34,7 @@
         <div *ngIf="description.errors.maxlength">Title must be max 150 characters</div>
       </div>
     </div>
-    <div class="form-group d-flex justify-content-center">
+    <div class="form-group d-flex justify-content-center mobile_calender">
       <div>
         <label for="startsOn">Starting Date</label>
         <div class="input-group">
@@ -45,7 +45,7 @@
                  id="startsOn" name="startsOn">
         </div>
       </div>
-      <div class="ml-4">
+      <div class="ml-4 ending_date_margin_in_mobile">
         <label for="endsOn">Ending Date</label>
         <div class="input-group">
           <input [(ngModel)]="events.endingOn" #endsOn="ngModel"
