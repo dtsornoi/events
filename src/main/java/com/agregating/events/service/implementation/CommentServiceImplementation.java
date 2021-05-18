@@ -1,7 +1,8 @@
-package com.agregating.events.service;
+package com.agregating.events.service.implementation;
 
 import com.agregating.events.domain.Comment;
 import com.agregating.events.repository.CommentRepository;
+import com.agregating.events.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +17,7 @@ import java.util.Optional;
  */
 
 @Service
-public class CommentServiceImplementation implements CommentService{
+public class CommentServiceImplementation implements CommentService {
 
     private final CommentRepository repository;
 

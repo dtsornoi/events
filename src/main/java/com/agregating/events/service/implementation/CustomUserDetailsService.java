@@ -1,4 +1,4 @@
-package com.agregating.events.service;
+package com.agregating.events.service.implementation;
 
 import com.agregating.events.domain.CustomUserDetails;
 import com.agregating.events.domain.User;

@@ -1,7 +1,8 @@
-package com.agregating.events.service;
+package com.agregating.events.service.implementation;
 
 import com.agregating.events.domain.User;
 import com.agregating.events.repository.UserRepository;
+import com.agregating.events.service.CustomUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

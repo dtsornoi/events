@@ -1,9 +1,10 @@
-package com.agregating.events.service;
+package com.agregating.events.service.implementation;
 
 import com.agregating.events.domain.Event;
 import com.agregating.events.domain.User;
 import com.agregating.events.repository.EventRepository;
 import com.agregating.events.repository.UserRepository;
+import com.agregating.events.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +19,7 @@ import java.util.Optional;
  */
 
 @Service
-public class EventServiceImplementation implements EventService{
+public class EventServiceImplementation implements EventService {
 
     private final EventRepository repository;
     private final UserRepository userRepository;
