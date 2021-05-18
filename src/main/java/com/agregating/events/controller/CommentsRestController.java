@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Rest controller for Comments
@@ -53,6 +54,7 @@ public class CommentsRestController {
         List<Comment> comments = service.findAllComments();
 
         if(comments.isEmpty()){
+            comment.setId(UUID.randomUUID());
             return new ResponseEntity<>(service.saveComment(comment), HttpStatus.CREATED);
         }else{
             for (Comment singleComment : comments){
@@ -63,6 +65,7 @@ public class CommentsRestController {
             }
 
         }
+        comment.setId(UUID.randomUUID());
         return new ResponseEntity<>(service.saveComment(comment), HttpStatus.CREATED);
     }
 
@@ -72,7 +75,7 @@ public class CommentsRestController {
      * @return ResponseEntity.ok if Comment was deleted or ResponseEntity.notFound if does not exist in DB
      */
     @DeleteMapping("/comments/{id}")
-    public ResponseEntity<HttpStatus> deleteComment(@PathVariable("id") long id){
+    public ResponseEntity<HttpStatus> deleteComment(@PathVariable("id") UUID id){
         if (service.deleteComment(id)){
             return new ResponseEntity<>(HttpStatus.OK);
         }

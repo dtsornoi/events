@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Rest Controller for Events
@@ -52,7 +53,7 @@ public class EventRestController {
      * @return Event requested from client side
      */
     @GetMapping("/event/{id}")
-    public ResponseEntity<Event> findEventById(@PathVariable("id") long id){
+    public ResponseEntity<Event> findEventById(@PathVariable("id") UUID id){
         Optional<Event> eventOptional = service.findEventById(id);
 
         return eventOptional
@@ -75,7 +76,7 @@ public class EventRestController {
                 return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
             }
         }
-
+        event.setId(UUID.randomUUID());
         Event upcomingEvent = service.saveEvent(event);
         return new ResponseEntity<>(upcomingEvent, HttpStatus.CREATED);
     }
@@ -88,7 +89,7 @@ public class EventRestController {
      */
     @PutMapping("/event/{id}")
     @PreAuthorize("hasRole('ORGANIZER')")
-    public ResponseEntity<Event> updateEvent(@PathVariable("id") long id,
+    public ResponseEntity<Event> updateEvent(@PathVariable("id") UUID id,
                                             @Valid @RequestBody Event event){
         Event newEvent = service.updateEvent(id, event);
         if (newEvent == null){
@@ -104,7 +105,7 @@ public class EventRestController {
      */
     @DeleteMapping("/event/{id}")
     @PreAuthorize("hasRole('ORGANIZER')")
-    public ResponseEntity<HttpStatus> deleteEvent(@PathVariable("id") long id){
+    public ResponseEntity<HttpStatus> deleteEvent(@PathVariable("id") UUID id){
         boolean success = service.deleteEvent(id);
         if (success){
             return new ResponseEntity<>(HttpStatus.OK);
@@ -120,7 +121,7 @@ public class EventRestController {
      * @return event with subscribed users in it
      */
     @PostMapping("/subscribe/{id}")
-    public ResponseEntity<Event> subscribeUserToEvent(@PathVariable("id") long id,
+    public ResponseEntity<Event> subscribeUserToEvent(@PathVariable("id") UUID id,
                                                      @RequestBody User user){
         Event event = service.addSubscriber(id, user);
         return new ResponseEntity<>(event, HttpStatus.OK);
@@ -133,7 +134,7 @@ public class EventRestController {
      * @return event with list of users subscribed to event
      */
     @PostMapping("/unsubscribe/{id}")
-    public ResponseEntity<HttpStatus> deleteSubscriber(@PathVariable("id") long id,
+    public ResponseEntity<HttpStatus> deleteSubscriber(@PathVariable("id") UUID id,
                                                   @RequestBody User user){
         service.deleteSubscriber(id, user);
 

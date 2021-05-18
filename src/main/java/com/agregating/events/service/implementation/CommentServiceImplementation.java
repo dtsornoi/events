@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * implementation of Comment Service
@@ -40,7 +41,7 @@ public class CommentServiceImplementation implements CommentService {
 
     @Override
     @Transactional
-    public boolean deleteComment(long id) {
+    public boolean deleteComment(UUID id) {
         Optional<Comment> optionalComment = repository.findById(id);
         if (optionalComment.isPresent()){
             repository.delete(optionalComment.get());

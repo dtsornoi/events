@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CustomUserServiceImplementation implements CustomUserService {
@@ -33,7 +34,7 @@ public class CustomUserServiceImplementation implements CustomUserService {
 
     @Override
     @Transactional
-    public Optional<User> findById(long id) {
+    public Optional<User> findById(UUID id) {
         return repository.findById(id);
     }
 

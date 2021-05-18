@@ -3,6 +3,7 @@ package com.agregating.events.service;
 import com.agregating.events.domain.Comment;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * interface for Comment Service
@@ -15,5 +16,5 @@ public interface CommentService {
 
     Comment saveComment(Comment comment);
 
-    boolean deleteComment(long id);
+    boolean deleteComment(UUID id);
 }

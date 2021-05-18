@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Rest Controller for Users
@@ -34,7 +35,7 @@ public class UserRestController {
      * @return User.class stored in DB requested from client side
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseUser> findById(@PathVariable("id") long id){
+    public ResponseEntity<ResponseUser> findById(@PathVariable("id") UUID id){
         Optional<User> optionalUser = service.findById(id);
         ResponseUser responseUser = new ResponseUser();
         User user = null;

@@ -114,6 +114,7 @@ public class AuthController {
         }
 
         User user = new User();
+        user.setId(UUID.randomUUID());
         user.setUsername(signupRequest.getUsername());
         user.setPassword(encoder.encode(signupRequest.getPassword()));
         user.setEmail(signupRequest.getEmail());

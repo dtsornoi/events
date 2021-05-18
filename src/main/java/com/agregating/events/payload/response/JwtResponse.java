@@ -2,6 +2,7 @@ package com.agregating.events.payload.response;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * POJO Response for Jwt token and user
@@ -12,13 +13,13 @@ import java.util.List;
 public class JwtResponse {
     private String token;
     private String type = "Bearer";
-    private Long id;
+    private UUID id;
     private String username;
     private String email;
     private Collection<String> roles;
 
     public JwtResponse(String accessToken,
-                       Long id, String username,
+                       UUID id, String username,
                        String email,
                        List<String> roles) {
         this.token = accessToken;
@@ -46,11 +47,11 @@ public class JwtResponse {
         this.type = type;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

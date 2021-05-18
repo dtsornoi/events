@@ -1,27 +1,27 @@
 package com.agregating.events.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
+import java.util.UUID;
 
 /**
  * POJO for storing role enums
  *
  *@author Dmitri Tšornõi
  */
-@Entity
-@Table(name = "roles")
+
+@Document(collection = "roles")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    private UUID id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "name", length = 20)
     private ERole name;
 }

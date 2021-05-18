@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * implementation on Event Service
@@ -39,7 +40,7 @@ public class EventServiceImplementation implements EventService {
 
     @Override
     @Transactional
-    public Optional<Event> findEventById(long id) {
+    public Optional<Event> findEventById(UUID id) {
         return repository.findById(id);
     }
 
@@ -51,7 +52,7 @@ public class EventServiceImplementation implements EventService {
 
     @Override
     @Transactional
-    public Event updateEvent(Long id, Event newEvent) {
+    public Event updateEvent(UUID id, Event newEvent) {
         Optional<Event> oldEvent = findEventById(id);
 
         if (oldEvent.isPresent()){
@@ -70,7 +71,7 @@ public class EventServiceImplementation implements EventService {
 
     @Override
     @Transactional
-    public boolean deleteEvent(Long id) {
+    public boolean deleteEvent(UUID id) {
         Optional<Event> eventOptional = findEventById(id);
 
         if (eventOptional.isPresent()){
@@ -88,7 +89,7 @@ public class EventServiceImplementation implements EventService {
     }
 
     @Override
-    public Event addSubscriber(long id, User user) {
+    public Event addSubscriber(UUID id, User user) {
         Event event = findEventById(id)
                 .orElseThrow(() -> new RuntimeException("Event not found"));
         List<User> users = event.getSubscribedUsers();
@@ -99,7 +100,7 @@ public class EventServiceImplementation implements EventService {
     }
 
     @Override
-    public Event deleteSubscriber(long id, User user) {
+    public Event deleteSubscriber(UUID id, User user) {
         Event event = findEventById(id)
                 .orElseThrow(() -> new RuntimeException("Event not found"));
         List<User> users = event.getSubscribedUsers();

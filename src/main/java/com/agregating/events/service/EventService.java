@@ -5,6 +5,7 @@ import com.agregating.events.domain.User;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * interface for Event Service
@@ -16,17 +17,17 @@ public interface EventService {
 
     List<Event> findAllEvents();
 
-    Optional<Event> findEventById(long id);
+    Optional<Event> findEventById(UUID id);
 
     Event saveEvent(Event event);
 
-    Event updateEvent(Long id, Event event);
+    Event updateEvent(UUID id, Event event);
 
-    boolean deleteEvent(Long id);
+    boolean deleteEvent(UUID id);
 
     void deleteAll();
 
-    Event addSubscriber(long id ,User user);
+    Event addSubscriber(UUID id ,User user);
 
-    Event deleteSubscriber(long id, User user);
+    Event deleteSubscriber(UUID id, User user);
 }
