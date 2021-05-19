@@ -3,7 +3,7 @@
   <form
     *ngIf="!isSuccessful"
     name="form"
-    (ngSubmit)="f.form.valid && onSubmit()"
+    (ngSubmit)="f.form.valid && onSubmit() && checkIfPasswordsMatch()"
     #f="ngForm"
     novalidate
     class="container-sm"
@@ -71,6 +71,16 @@
             Password must be at least 6 characters
           </div>
         </div>
+      </div>
+      <div class="form-group">
+        <label for="password-confirmation" class="form-label">Confirm password</label>
+        <input type="password"
+               id="password-confirmation"
+               required
+               class="form-control"
+               [(ngModel)]="passwordConfirmation"
+               name="password-confirmation">
+        <div *ngIf="checkIfPasswordsMatch()" class="alert alert-warning mt-2">Passwords do not match</div>
       </div>
       <div class="form-check mt-2">
         <input type="checkbox" class="form-check-input" id="organiserCheckBox"

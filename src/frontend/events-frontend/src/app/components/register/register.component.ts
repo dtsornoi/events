@@ -14,12 +14,23 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
   isSelected: boolean = false;
-
+  passwordConfirmation = '';
 
   constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
+  }
+
+  checkIfPasswordsMatch(): boolean {
+    if (this.form.password.length == 0){
+      return false;
+    }
+    if (this.form.password != this.passwordConfirmation){
+      return  true;
+    }if (this.form.password === this.passwordConfirmation){
+      return  false;
+    }
   }
 
   onSubmit(): void {
