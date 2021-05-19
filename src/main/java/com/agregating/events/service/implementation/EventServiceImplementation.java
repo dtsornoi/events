@@ -109,6 +109,6 @@ public class EventServiceImplementation implements EventService {
         List<User> users = event.getSubscribedUsers();
         users.remove(user);
         event.setSubscribedUsers(users);
-        return updateEvent(id, event);
+        return updateEvent(id, event);§
     }
 }
