@@ -123,6 +123,7 @@ public class EventRestController {
     @PostMapping("/subscribe/{id}")
     public ResponseEntity<Event> subscribeUserToEvent(@PathVariable("id") UUID id,
                                                      @RequestBody User user){
+
         Event event = service.addSubscriber(id, user);
         return new ResponseEntity<>(event, HttpStatus.OK);
     }

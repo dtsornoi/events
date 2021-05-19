@@ -19,7 +19,7 @@ export class EventDescriptionComponent implements OnInit {
   isSubscribed: boolean = false;
   currentUser: User = {};
   users: User [] = [];
-  eventId;
+  eventId: string;
   notHidden: boolean = true;
   innerWidth: any;
   isVisible: boolean;
@@ -54,12 +54,11 @@ export class EventDescriptionComponent implements OnInit {
         for (let user of this.users) {
           if (user.id === this.currentUser.id) {
             this.isSubscribed = true;
+            this.showIfIsRightUser(user.username, this.currentUser.username);
           }
         }
       }
     });
-
-
   }
 
   hasRole(authority) {
@@ -76,7 +75,7 @@ export class EventDescriptionComponent implements OnInit {
     }
   }
 
-  updateLink(id: number) {
+  updateLink(id: string) {
     this.router.navigate([`update/${id}`]);
   }
 
@@ -92,6 +91,7 @@ export class EventDescriptionComponent implements OnInit {
   unSubscribe() {
     this.service.deleteSubscriber(this.event.id, this.currentUser).subscribe(
       data => {
+        console.log(data);
         this.isSubscribed = false;
         window.location.reload();
       }
@@ -110,7 +110,8 @@ export class EventDescriptionComponent implements OnInit {
     this.isVisible = !this.isVisible;
   }
 
-  showIfIsRightUser(): boolean{
-    return this.event.user.username === this.currentUser.username;
+  showIfIsRightUser(event, currUser): boolean{
+    return event === currUser;
   }
+
 }

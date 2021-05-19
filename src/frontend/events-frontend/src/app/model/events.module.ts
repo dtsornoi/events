@@ -1,7 +1,7 @@
 import {User} from './user.module';
 
 export class Events {
-  id?: number;
+  id?: string;
   title?: string;
   description?: string;
   startingFrom?: Date;

@@ -8,7 +8,7 @@ import {Comment} from '../../model/comment.moule';
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
-  @Input() eventId: number;
+  @Input() eventId: string;
   comments: Comment[] = [];
 
   constructor(

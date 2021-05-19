@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -47,6 +48,7 @@ public class EventServiceImplementation implements EventService {
     @Override
     @Transactional
     public Event saveEvent(Event event) {
+        event.setSubscribedUsers(new ArrayList<>());
         return repository.save(event);
     }
 
@@ -62,6 +64,7 @@ public class EventServiceImplementation implements EventService {
             tempEvent.setStartingFrom(newEvent.getStartingFrom());
             tempEvent.setEndingOn(newEvent.getEndingOn());
             tempEvent.setUser(newEvent.getUser());
+            tempEvent.setSubscribedUsers(newEvent.getSubscribedUsers());
 
             return repository.save(tempEvent);
         }else {
@@ -104,10 +107,7 @@ public class EventServiceImplementation implements EventService {
         Event event = findEventById(id)
                 .orElseThrow(() -> new RuntimeException("Event not found"));
         List<User> users = event.getSubscribedUsers();
-        User currentUser = userRepository.findByUsername(user.getUsername())
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        users.remove(currentUser);
+        users.remove(user);
         event.setSubscribedUsers(users);
         return updateEvent(id, event);
     }

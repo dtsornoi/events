@@ -15,7 +15,7 @@ import {Events} from '../../model/events.module';
 })
 export class NewCommentComponent implements OnInit {
 
-  @Input() eventId: number;
+  @Input() eventId: string;
 
   comment: Comment = {};
   errorMessage = '';

@@ -2,7 +2,7 @@ import {User} from './user.module';
 import {Events} from './events.module';
 
 export class Comment {
-  id?: number;
+  id?: string;
   title?: string;
   comment?: string;
   postedOn?: number;

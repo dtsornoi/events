@@ -33,11 +33,11 @@ export class ContentService {
     return this.http.put(`${this.API_URL}/event/${id}`, event);
   }
 
-  addSubscriber(id, event): Observable<any> {
-    return this.http.post(`${this.API_URL}/subscribe/${id}`, event);
+  addSubscriber(id, user): Observable<any> {
+    return this.http.post(`${this.API_URL}/subscribe/${id}`, user);
   }
 
-  deleteSubscriber(id, event): Observable<any> {
-    return this.http.post(`${this.API_URL}/unsubscribe/${id}`, event);
+  deleteSubscriber(id, user): Observable<any> {
+    return this.http.post(`${this.API_URL}/unsubscribe/${id}`, user);
   }
 }
