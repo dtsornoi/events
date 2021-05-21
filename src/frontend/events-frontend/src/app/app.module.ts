@@ -20,6 +20,7 @@ import {CommentService} from './service/comment.service';
 import {UserService} from './service/user.service';
 import {ContentService} from './service/content.service';
 import {TokenStorageService} from './service/token-storage.service';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {TokenStorageService} from './service/token-storage.service';
     CommentComponent,
     NewCommentComponent,
     FilterPipe,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
