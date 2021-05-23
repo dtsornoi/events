@@ -2,7 +2,7 @@
   <div class="container ml-5 margin_mobile">
     <div class="container d-flex align-items-center">
       <h2>{{event.title}}</h2>
-      <a class="ml-2" (click)="delete(event.id)" *ngIf="isLoggedIn && hasRole('ROLE_ORGANIZER') && showIfIsRightUser">
+      <a class="ml-2" (click)="delete(event.id)" *ngIf="isLoggedIn && hasRole('ROLE_ORGANIZER') && isRightUser">
         <div class="trash"></div>
       </a>
     </div>
@@ -17,7 +17,7 @@
     </div>
     <div class="d-flex flex-row justify-content-start align-items-start">
       <div *ngIf="isLoggedIn && hasRole('ROLE_ORGANIZER')" class="m-2">
-        <a (click)="updateLink(event.id)" class="btn btn-warning" *ngIf="showIfIsRightUser">Update</a>
+        <a (click)="updateLink(event.id)" class="btn btn-warning" *ngIf="isRightUser">Update</a>
       </div>
       <div *ngIf="isLoggedIn" class="m-2">
         <a (click)="subscribe()" class="btn btn-success" *ngIf="!isSubscribed">Subscribe</a>

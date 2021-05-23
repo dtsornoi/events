@@ -23,6 +23,7 @@ export class EventDescriptionComponent implements OnInit {
   notHidden: boolean = true;
   innerWidth: any;
   isVisible: boolean;
+  isRightUser: boolean;
 
   constructor(
     private service: ContentService,
@@ -49,12 +50,11 @@ export class EventDescriptionComponent implements OnInit {
     this.service.getOneEvent(this.eventId).subscribe(data => {
       this.event = data;
       this.users = this.event.subscribedUsers;
-
+      this.isRightUser = this.showIfIsRightUser(this.event.user.username, this.currentUser.username);
       if (this.users.length != 0) {
         for (let user of this.users) {
           if (user.id === this.currentUser.id) {
             this.isSubscribed = true;
-            this.showIfIsRightUser(user.username, this.currentUser.username);
           }
         }
       }

@@ -21,6 +21,7 @@ import {UserService} from './service/user.service';
 import {ContentService} from './service/content.service';
 import {TokenStorageService} from './service/token-storage.service';
 import { FooterComponent } from './components/footer/footer.component';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { FooterComponent } from './components/footer/footer.component';
     CommentService,
     UserService,
     ContentService,
-    TokenStorageService
+    TokenStorageService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
