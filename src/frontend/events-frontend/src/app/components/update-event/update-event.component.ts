@@ -3,6 +3,7 @@ import {ContentService} from '../../service/content.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TokenStorageService} from '../../service/token-storage.service';
 import {Events} from '../../model/events.module';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-update-event',
@@ -13,12 +14,14 @@ export class UpdateEventComponent implements OnInit {
 
   oldEvent: Events = {};
   isSuccessful: boolean = false;
+  oldStartDate;
 
   constructor(
     private service: ContentService,
     private route: ActivatedRoute,
     private router: Router,
-    private token: TokenStorageService
+    private token: TokenStorageService,
+    private datePipe: DatePipe
   ) {
   }
 
@@ -26,6 +29,8 @@ export class UpdateEventComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.service.getOneEvent(id).subscribe(data => {
       this.oldEvent = data;
+      this.oldEvent.startingFrom = this.datePipe.transform(this.oldEvent.startingFrom, 'yyyy-MM-dd');
+      this.oldEvent.endingOn = this.datePipe.transform(this.oldEvent.endingOn, 'yyyy-MM-dd');
     });
   }
 

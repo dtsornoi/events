@@ -34,17 +34,16 @@
         <div *ngIf="title.errors.maxlength">Title must be max 150 characters</div>
       </div>
     </div>
-    <i class="text-warning">Please re-enter the dates even if you do not want to changes anything else.</i>
     <div class="d-flex flex-column">
       <label for="startsOn" class="text-secondary">Starting Date</label>
-      <i class="text-secondary">Old starting date was on: {{oldEvent.startingFrom |date:'dd MMMM yyyy'}}</i>
       <input type="date" [(ngModel)]="oldEvent.startingFrom" #startsOn="ngModel"
+             placeholder="{{oldEvent.startingFrom | date:'yyyy-MM-dd'}}"
              class="form-control" id="startsOn" name="startsOn">
     </div>
     <div class="mt-2 mb-2 d-flex flex-column">
       <label for="endsOn" class="text-secondary">Ending Date</label>
-      <i class="text-secondary">Old ending date was on: {{oldEvent.endingOn | date:'dd MMMM yyyy'}}</i>
       <input type="date" [(ngModel)]="oldEvent.endingOn" #endingOn="ngModel"
+             placeholder="{{oldEvent.endingOn | date:'yyyy-MM-dd'}}"
              class="form-control" id="endsOn" name="endsOn">
     </div>
     <div class="d-flex justify-content-sm-between mobile_buttons">

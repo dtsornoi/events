@@ -4,8 +4,8 @@ export class Events {
   id?: string;
   title?: string;
   description?: string;
-  startingFrom?: Date;
-  endingOn?: Date;
+  startingFrom?: string;
+  endingOn?: string;
   user?: User;
   subscribedUsers?: User [];
 }
