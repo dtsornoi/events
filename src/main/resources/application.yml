@@ -1,4 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://springstudent:springstudent@cluster0.vozus.mongodb.net/events_db?retryWrites=true&w=majority
+      uri: ENC(naKAn5Ebp0jAw67aBRYt3pZDgOm4WXkLjH2PpwpOyRIykOgNSEQfR22eaeWRiTY9aNly4Hh9kfrLX9jAmhlp/faIw+HcYLJq7mq5/ieAVfTisdXCRJXWAEAJOZ7AHF8BcjmAT4fXQJPa0L+fZDDMZTgjohmwp/O66ZbXAktwX9I=)
+jasypt:
+  encryptor:
+    password: ${JASYPT_PASSWORD}
