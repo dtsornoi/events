@@ -16,3 +16,7 @@
 .form-control {
   border-radius: 1rem !important;
 }
+
+.filler {
+  min-height: 80vh;
+}

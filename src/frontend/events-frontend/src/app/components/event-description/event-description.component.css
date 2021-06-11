@@ -24,4 +24,9 @@ aside {
   .margin_mobile{
     margin: 0 !important;
   }
+
+}
+
+.filler {
+  min-height: 80vh;
 }

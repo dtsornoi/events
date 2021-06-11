@@ -1,7 +1,18 @@
 spring:
+  mail:
+    password: ${EMAIL_PASSWORD}
+    username: ${EMAIL}
+    host: smtp.gmail.com
+    port: 587
+    properties:
+      mail:
+        debug: true
+        transport:
+          protocol: smtp
+        smtp:
+          auth: true
+          starttls:
+            enable: true
   data:
     mongodb:
-      uri: ENC(naKAn5Ebp0jAw67aBRYt3pZDgOm4WXkLjH2PpwpOyRIykOgNSEQfR22eaeWRiTY9aNly4Hh9kfrLX9jAmhlp/faIw+HcYLJq7mq5/ieAVfTisdXCRJXWAEAJOZ7AHF8BcjmAT4fXQJPa0L+fZDDMZTgjohmwp/O66ZbXAktwX9I=)
-jasypt:
-  encryptor:
-    password: ${JASYPT_PASSWORD}
+      uri: ${MONGO_DB}
