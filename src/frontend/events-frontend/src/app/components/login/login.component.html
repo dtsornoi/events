@@ -1,4 +1,4 @@
-<div class="d-flex  flex-column justify-content-center container">
+<div class="d-flex  flex-column justify-content-center container filler">
   <form
     *ngIf="!isLoggedIn"
     name="form"
@@ -51,13 +51,14 @@
           </div>
         </div>
       </div>
-      <div>
+      <div class="mb-2">
         <button
           type="submit"
           class="btn btn-primary">
           Login
         </button>
       </div>
+      <i class="forgot_password"><a (click)="goToForgotPassword()">Forgot Password?</a></i>
       <div>
         <div
           role="alert"

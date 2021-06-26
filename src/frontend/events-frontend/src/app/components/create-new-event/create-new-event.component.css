@@ -1,9 +1,9 @@
 @media (max-width: 700px) {
-  .mobile_calender{
+  .mobile_calender {
     flex-direction: column !important;
   }
 
-  .ending_date_margin_in_mobile{
+  .ending_date_margin_in_mobile {
     margin: 1rem 0 0 0 !important;
   }
 }

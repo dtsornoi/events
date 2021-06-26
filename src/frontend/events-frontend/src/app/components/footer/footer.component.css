@@ -1,11 +1,11 @@
-.github{
+.github {
   height: 32px;
   width: 32px;
   background-image: url("src/assets/images/github-brands.svg");
   background-repeat: no-repeat;
 }
 
-.linkedin{
+.linkedin {
   width: 32px;
   height: 32px;
   background-image: url("src/assets/images/linkedin-brands.svg");
