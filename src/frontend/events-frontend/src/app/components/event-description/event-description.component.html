@@ -29,7 +29,8 @@
     </div>
     <button class="btn btn-primary m-2"
             *ngIf="isMobile(innerWidth)"
-            (click)="displaySubscribedUsersInMobileOrHide()">Show subscribed users</button>
+            (click)="displaySubscribedUsersInMobileOrHide()">Show subscribed users
+    </button>
     <aside class="text-center shadow-sm p-3 mr-5 bg-white rounded w-75 margin_mobile"
            *ngIf="isLoggedIn && !isMobile(innerWidth)? !isVisible : isVisible">
       <h3>Subscribed Users</h3>

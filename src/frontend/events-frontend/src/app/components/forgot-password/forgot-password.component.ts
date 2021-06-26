@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {EmailService} from '../../service/email.service';
 
 @Component({
@@ -8,11 +8,15 @@ import {EmailService} from '../../service/email.service';
 })
 export class ForgotPasswordComponent implements OnInit {
 
+  msg: string = '';
+  isSuccessful: boolean = false;
+  hasFailed: boolean = false;
   email: string;
 
   constructor(
     private emailService: EmailService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }
@@ -20,7 +24,14 @@ export class ForgotPasswordComponent implements OnInit {
   onSubmit() {
     return this.emailService.sendMail(this.email).subscribe(
       data => {
-        alert("mail sent!");
+        this.hasFailed = false;
+        this.isSuccessful = true;
+        this.msg = 'Mail with new password sent.';
+      },
+      error => {
+        this.isSuccessful = false;
+        this.hasFailed = true;
+        this.msg = error.error.message;
       }
     );
   }

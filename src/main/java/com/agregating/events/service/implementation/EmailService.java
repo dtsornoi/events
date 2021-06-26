@@ -1,9 +1,6 @@
 package com.agregating.events.service.implementation;
 
-import com.agregating.events.domain.User;
-import com.agregating.events.service.CustomUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -11,28 +8,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailService {
 
-    private JavaMailSender mailSender;
-    private CustomUserService userService;
+  private JavaMailSender mailSender;
 
-    @Autowired
-    public EmailService(JavaMailSender mailSender, CustomUserService userService) {
-        this.mailSender = mailSender;
-        this.userService = userService;
-    }
+  @Autowired
+  public EmailService(JavaMailSender mailSender) {
+    this.mailSender = mailSender;
+  }
 
-    public boolean verifyEmail(String email){
-        User userFromDB =
-                userService.findByEmail(email).orElseThrow(()-> new RuntimeException("User not found"));
-        return userFromDB.getEmail().equals(email);
-    }
+  public void sendMessage(String to, String subject, String text) {
+    SimpleMailMessage message = new SimpleMailMessage();
+    message.setFrom("dmitri.tsornoi@gmail.com");
+    message.setTo(to);
+    message.setSubject(subject);
+    message.setText(text);
 
-    public void sendMessage(String to, String subject, String text){
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("dmitri.tsornoi@gmail.com");
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(text);
-
-        this.mailSender.send(message);
-    }
+    this.mailSender.send(message);
+  }
 }

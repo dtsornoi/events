@@ -23,13 +23,14 @@ export class RegisterComponent implements OnInit {
   }
 
   checkIfPasswordsMatch(): boolean {
-    if (this.form.password.length == 0){
+    if (this.form.password.length == 0) {
       return false;
     }
-    if (this.form.password != this.passwordConfirmation){
-      return  true;
-    }if (this.form.password === this.passwordConfirmation){
-      return  false;
+    if (this.form.password != this.passwordConfirmation) {
+      return true;
+    }
+    if (this.form.password === this.passwordConfirmation) {
+      return false;
     }
   }
 

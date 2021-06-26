@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ContentService} from '../../service/content.service';
 import {Events} from '../../model/events.module';
@@ -99,9 +99,9 @@ export class EventDescriptionComponent implements OnInit {
   }
 
   @HostListener('window: resize', ['$event'])
-  isMobile(event): boolean{
+  isMobile(event): boolean {
     this.innerWidth = window.innerWidth;
-    let isLessThanEquals700 : boolean = this.innerWidth <= 700;
+    let isLessThanEquals700: boolean = this.innerWidth <= 700;
 
     return isLessThanEquals700;
   }
@@ -110,7 +110,7 @@ export class EventDescriptionComponent implements OnInit {
     this.isVisible = !this.isVisible;
   }
 
-  showIfIsRightUser(event, currUser): boolean{
+  showIfIsRightUser(event, currUser): boolean {
     return event === currUser;
   }
 

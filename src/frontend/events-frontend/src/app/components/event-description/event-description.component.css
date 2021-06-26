@@ -14,14 +14,14 @@ aside {
 }
 
 @media (max-width: 700px) {
-  .mobile_version{
+  .mobile_version {
     flex-direction: column !important;
     justify-content: center !important;
     align-content: center !important;
     align-items: center !important;
   }
 
-  .margin_mobile{
+  .margin_mobile {
     margin: 0 !important;
   }
 
