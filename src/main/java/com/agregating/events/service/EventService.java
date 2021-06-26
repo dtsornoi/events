@@ -12,22 +12,21 @@ import java.util.UUID;
  *
  * @author Dmitri Tšornõi
  */
-
 public interface EventService {
 
-    List<Event> findAllEvents();
+  List<Event> findAllEvents();
 
-    Optional<Event> findEventById(UUID id);
+  Optional<Event> findEventById(UUID id);
 
-    Event saveEvent(Event event);
+  Event saveEvent(Event event);
 
-    Event updateEvent(UUID id, Event event);
+  Event updateEvent(UUID id, Event event);
 
-    boolean deleteEvent(UUID id);
+  boolean deleteEvent(UUID id);
 
-    void deleteAll();
+  void deleteAll();
 
-    Event addSubscriber(UUID id ,User user);
+  Event addSubscriber(UUID id, User user);
 
-    Event deleteSubscriber(UUID id, User user);
+  Event deleteSubscriber(UUID id, User user);
 }

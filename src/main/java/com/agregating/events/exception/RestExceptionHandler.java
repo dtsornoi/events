@@ -10,18 +10,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  *
  * @author Dmitri Tšornõi
  */
-
 @ControllerAdvice
 public class RestExceptionHandler {
 
-    @ExceptionHandler
-    public ResponseEntity<ErrorResponse> handleException(Exception exception){
-        ErrorResponse error = new ErrorResponse(
-                HttpStatus.BAD_REQUEST.value(),
-                exception.getMessage(),
-                System.currentTimeMillis()
-        );
+  @ExceptionHandler
+  public ResponseEntity<ErrorResponse> handleException(Exception exception) {
+    ErrorResponse error =
+        new ErrorResponse(
+            HttpStatus.BAD_REQUEST.value(), exception.getMessage(), System.currentTimeMillis());
 
-        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
-    }
+    return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+  }
 }

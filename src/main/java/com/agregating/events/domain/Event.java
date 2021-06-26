@@ -17,29 +17,27 @@ import java.util.UUID;
  *
  * @author Dmitri Tšornõi
  */
-
 @Document(collection = "events")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Event {
 
-    @Id
-    private UUID id;
+  @Id private UUID id;
 
-    @Size(max = 20, min = 6)
-    @NotBlank
-    private String title;
+  @Size(max = 20, min = 6)
+  @NotBlank
+  private String title;
 
-    @NotBlank
-    @Size(min = 10, max = 150)
-    private String description;
+  @NotBlank
+  @Size(min = 10, max = 150)
+  private String description;
 
-    private Date startingFrom;
+  private Date startingFrom;
 
-    private Date endingOn;
+  private Date endingOn;
 
-    private User user;
+  private User user;
 
-    private List<User> subscribedUsers;
+  private List<User> subscribedUsers;
 }

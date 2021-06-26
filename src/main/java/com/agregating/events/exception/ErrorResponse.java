@@ -9,12 +9,11 @@ import lombok.NoArgsConstructor;
  *
  * @author Dmitri Tšornõi
  */
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class ErrorResponse {
-    private int status;
-    private String message;
-    private long timeStamp;
+  private int status;
+  private String message;
+  private long timeStamp;
 }

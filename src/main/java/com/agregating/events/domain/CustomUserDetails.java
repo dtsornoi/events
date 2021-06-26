@@ -14,70 +14,69 @@ import java.util.stream.Collectors;
  *
  * @author Dmitri Tšornõi
  */
-
 public class CustomUserDetails implements UserDetails {
 
-    private final UUID id;
+  private final UUID id;
 
-    private final String username;
+  private final String username;
 
-    @JsonIgnore
-    private final String password;
+  @JsonIgnore private final String password;
 
-    private final String email;
+  private final String email;
 
-    private final Collection<? extends GrantedAuthority> authorities;
+  private final Collection<? extends GrantedAuthority> authorities;
 
-    public CustomUserDetails(User user){
-        this.id = user.getId();
-        this.username = user.getUsername();
-        this.password = user.getPassword();
-        this.email = user.getEmail();
-        this.authorities = user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
-                .collect(Collectors.toList());
-    }
+  public CustomUserDetails(User user) {
+    this.id = user.getId();
+    this.username = user.getUsername();
+    this.password = user.getPassword();
+    this.email = user.getEmail();
+    this.authorities =
+        user.getRoles().stream()
+            .map(role -> new SimpleGrantedAuthority(role.getName().name()))
+            .collect(Collectors.toList());
+  }
 
-    public UUID getId(){
-        return id;
-    }
+  public UUID getId() {
+    return id;
+  }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return authorities;
+  }
 
-    @Override
-    public String getPassword() {
-        return password;
-    }
+  @Override
+  public String getPassword() {
+    return password;
+  }
 
-    @Override
-    public String getUsername() {
-        return username;
-    }
+  @Override
+  public String getUsername() {
+    return username;
+  }
 
-    public String getEmail(){
-        return email;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
 
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+  @Override
+  public boolean isEnabled() {
+    return true;
+  }
 }

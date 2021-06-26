@@ -6,6 +6,6 @@ package com.agregating.events.domain;
  * @author Dmitri Tšornõi
  */
 public enum ERole {
-    ROLE_USER,
-    ROLE_ORGANIZER
+  ROLE_USER,
+  ROLE_ORGANIZER
 }

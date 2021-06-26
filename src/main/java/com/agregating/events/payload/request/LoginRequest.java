@@ -10,14 +10,11 @@ import javax.validation.constraints.NotBlank;
  *
  * @author Dmitri Tšornõi
  */
-
 @Data
 @NoArgsConstructor
 public class LoginRequest {
 
-        @NotBlank
-        private String username;
+  @NotBlank private String username;
 
-        @NotBlank
-        private String password;
+  @NotBlank private String password;
 }

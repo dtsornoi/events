@@ -13,8 +13,7 @@ import java.util.UUID;
  *
  * @author Dmitri Tšornõi
  */
-
 @Repository
 public interface RoleRepository extends MongoRepository<Role, UUID> {
-    Optional<Role> findByName(ERole name);
+  Optional<Role> findByName(ERole name);
 }

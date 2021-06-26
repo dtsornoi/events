@@ -19,126 +19,132 @@ import java.util.UUID;
  *
  * @author Dmitri Tšornõi
  */
-
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/events")
 public class EventRestController {
 
-    private final EventService service;
+  private final EventService service;
 
-    @Autowired
-    public EventRestController(EventService service) {
-        this.service = service;
+  @Autowired
+  public EventRestController(EventService service) {
+    this.service = service;
+  }
+
+  /**
+   * GET: <code>/all-events</code>
+   *
+   * @return List of all events stored in DB
+   */
+  @GetMapping("/all-events")
+  public ResponseEntity<List<Event>> getAllEvents() {
+    List<Event> events = service.findAllEvents();
+
+    if (events.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    /**
-     * GET: <code>/all-events</code>
-     * @return List of all events stored in DB
-     */
-    @GetMapping("/all-events")
-    public ResponseEntity<List<Event>> getAllEvents(){
-        List<Event> events = service.findAllEvents();
+    return new ResponseEntity<>(events, HttpStatus.OK);
+  }
 
-        if (events.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
+  /**
+   * GET: <code>/event/id</code>
+   *
+   * @param id of the event to be retrieved from DB
+   * @return Event requested from client side
+   */
+  @GetMapping("/event/{id}")
+  public ResponseEntity<Event> findEventById(@PathVariable("id") UUID id) {
+    Optional<Event> eventOptional = service.findEventById(id);
 
-        return new ResponseEntity<>(events, HttpStatus.OK);
+    return eventOptional
+        .map(event -> new ResponseEntity<>(event, HttpStatus.OK))
+        .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+  }
+
+  /**
+   * POST: <code>/save-event</code>
+   *
+   * @param event from client side to be persisted to DB
+   * @return response and persisted event
+   */
+  @PostMapping("/save-event")
+  @PreAuthorize("hasRole('ORGANIZER')")
+  public ResponseEntity<Event> saveEvent(@Valid @RequestBody Event event) {
+
+    List<Event> events = service.findAllEvents();
+    for (Event currEvent : events) {
+      if (currEvent.equals(event)) {
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+      }
     }
+    event.setId(UUID.randomUUID());
+    Event upcomingEvent = service.saveEvent(event);
+    return new ResponseEntity<>(upcomingEvent, HttpStatus.CREATED);
+  }
 
-    /**
-     * GET: <code>/event/id</code>
-     * @param id of the event to be retrieved from DB
-     * @return Event requested from client side
-     */
-    @GetMapping("/event/{id}")
-    public ResponseEntity<Event> findEventById(@PathVariable("id") UUID id){
-        Optional<Event> eventOptional = service.findEventById(id);
-
-        return eventOptional
-                .map(event -> new ResponseEntity<>(event, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+  /**
+   * PUT: <code>/event/id</code>
+   *
+   * @param id of the old Event stored in DB
+   * @param event body of the event to be updated in the old event
+   * @return updated old event
+   */
+  @PutMapping("/event/{id}")
+  @PreAuthorize("hasRole('ORGANIZER')")
+  public ResponseEntity<Event> updateEvent(
+      @PathVariable("id") UUID id, @Valid @RequestBody Event event) {
+    Event newEvent = service.updateEvent(id, event);
+    if (newEvent == null) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+    return new ResponseEntity<>(newEvent, HttpStatus.OK);
+  }
 
-    /**
-     * POST: <code>/save-event</code>
-     * @param event from client side to be persisted to DB
-     * @return response and persisted event
-     */
-    @PostMapping("/save-event")
-    @PreAuthorize("hasRole('ORGANIZER')")
-    public ResponseEntity<Event> saveEvent(@Valid @RequestBody Event event){
-
-        List<Event> events = service.findAllEvents();
-         for (Event currEvent : events){
-                if (currEvent.equals(event)){
-                return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-            }
-        }
-        event.setId(UUID.randomUUID());
-        Event upcomingEvent = service.saveEvent(event);
-        return new ResponseEntity<>(upcomingEvent, HttpStatus.CREATED);
+  /**
+   * DELETE: <code>/event/id</code>
+   *
+   * @param id of the event to be deleted from DB
+   * @return response if event was deleted
+   */
+  @DeleteMapping("/event/{id}")
+  @PreAuthorize("hasRole('ORGANIZER')")
+  public ResponseEntity<HttpStatus> deleteEvent(@PathVariable("id") UUID id) {
+    boolean success = service.deleteEvent(id);
+    if (success) {
+      return new ResponseEntity<>(HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+  }
 
-    /**
-     * PUT: <code>/event/id</code>
-     * @param id of the old Event stored in DB
-     * @param event body of the event to be updated in the old event
-     * @return updated old event
-     */
-    @PutMapping("/event/{id}")
-    @PreAuthorize("hasRole('ORGANIZER')")
-    public ResponseEntity<Event> updateEvent(@PathVariable("id") UUID id,
-                                            @Valid @RequestBody Event event){
-        Event newEvent = service.updateEvent(id, event);
-        if (newEvent == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(newEvent, HttpStatus.OK);
-    }
+  /**
+   * POST: <code>/subscribe/id</code>
+   *
+   * @param id of the current selected event from client side
+   * @param user current user that wishes to be subscribed to event
+   * @return event with subscribed users in it
+   */
+  @PostMapping("/subscribe/{id}")
+  public ResponseEntity<Event> subscribeUserToEvent(
+      @PathVariable("id") UUID id, @RequestBody User user) {
 
-    /**
-     * DELETE: <code>/event/id</code>
-     * @param id of the event to be deleted from DB
-     * @return response if event was deleted
-     */
-    @DeleteMapping("/event/{id}")
-    @PreAuthorize("hasRole('ORGANIZER')")
-    public ResponseEntity<HttpStatus> deleteEvent(@PathVariable("id") UUID id){
-        boolean success = service.deleteEvent(id);
-        if (success){
-            return new ResponseEntity<>(HttpStatus.OK);
-        }else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+    Event event = service.addSubscriber(id, user);
+    return new ResponseEntity<>(event, HttpStatus.OK);
+  }
 
-    /**
-     * POST: <code>/subscribe/id</code>
-     * @param id of the current selected event from client side
-     * @param user current user that wishes to be subscribed to event
-     * @return event with subscribed users in it
-     */
-    @PostMapping("/subscribe/{id}")
-    public ResponseEntity<Event> subscribeUserToEvent(@PathVariable("id") UUID id,
-                                                     @RequestBody User user){
+  /**
+   * POST: <code>/unsubscribe/id</code>
+   *
+   * @param id of the current selected event on client side
+   * @param user to be unsubscribed from the event
+   * @return event with list of users subscribed to event
+   */
+  @PostMapping("/unsubscribe/{id}")
+  public ResponseEntity<HttpStatus> deleteSubscriber(
+      @PathVariable("id") UUID id, @RequestBody User user) {
+    service.deleteSubscriber(id, user);
 
-        Event event = service.addSubscriber(id, user);
-        return new ResponseEntity<>(event, HttpStatus.OK);
-    }
-
-    /**
-     * POST: <code>/unsubscribe/id</code>
-     * @param id of the current selected event on client side
-     * @param user to be unsubscribed from the event
-     * @return event with list of users subscribed to event
-     */
-    @PostMapping("/unsubscribe/{id}")
-    public ResponseEntity<HttpStatus> deleteSubscriber(@PathVariable("id") UUID id,
-                                                  @RequestBody User user){
-        service.deleteSubscriber(id, user);
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
 }
