@@ -4,7 +4,6 @@ import com.agregating.events.domain.ERole;
 import com.agregating.events.domain.Role;
 import com.agregating.events.repository.RoleRepository;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,7 +28,8 @@ class RoleServiceImplementationTest {
 
     Mockito.when(roleRepository.findByName(ERole.ROLE_USER)).thenReturn(Optional.of(role));
 
-    RoleServiceImplementation roleServiceImplementation = new RoleServiceImplementation(roleRepository);
+    RoleServiceImplementation roleServiceImplementation =
+        new RoleServiceImplementation(roleRepository);
     Role result = roleServiceImplementation.findByName(ERole.ROLE_USER).get();
 
     Assertions.assertEquals(role, result);

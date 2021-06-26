@@ -51,7 +51,8 @@ class EventServiceImplementationTest {
   void shouldReturnEvent_WhenIdIsGiven() {
     Mockito.when(eventRepository.findById(event.getId())).thenReturn(Optional.of(event));
 
-    EventServiceImplementation eventServiceImplementation = new EventServiceImplementation(eventRepository);
+    EventServiceImplementation eventServiceImplementation =
+        new EventServiceImplementation(eventRepository);
 
     Event result = eventServiceImplementation.findEventById(event.getId()).get();
 
@@ -61,10 +62,11 @@ class EventServiceImplementationTest {
 
   @Test
   @DisplayName("Event should be saved to DB")
-  void eventShouldBeSavedToDB(){
+  void eventShouldBeSavedToDB() {
     Mockito.when(eventRepository.save(event)).thenReturn(event);
 
-    EventServiceImplementation eventServiceImplementation = new EventServiceImplementation(eventRepository);
+    EventServiceImplementation eventServiceImplementation =
+        new EventServiceImplementation(eventRepository);
 
     Event result = eventServiceImplementation.saveEvent(event);
 
@@ -74,14 +76,15 @@ class EventServiceImplementationTest {
 
   @Test
   @DisplayName("Should return updated event, when new one is given")
-  void shouldReturnUpdatedEvent_whenNewEventIsGiven(){
+  void shouldReturnUpdatedEvent_whenNewEventIsGiven() {
     Event newEvent = new Event();
     newEvent.setTitle("titl");
     newEvent.setDescription("Descrpt");
     Mockito.when(eventRepository.save(event)).thenReturn(event);
     Mockito.when(eventRepository.findById(event.getId())).thenReturn(Optional.of(event));
 
-    EventServiceImplementation eventServiceImplementation = new EventServiceImplementation(eventRepository);
+    EventServiceImplementation eventServiceImplementation =
+        new EventServiceImplementation(eventRepository);
 
     Event result = eventServiceImplementation.updateEvent(event.getId(), newEvent);
 
