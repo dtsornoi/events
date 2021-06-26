@@ -12,14 +12,13 @@ import java.util.UUID;
  *
  * @author Dmitri Tšornõi
  */
-
 @Repository
 public interface UserRepository extends MongoRepository<User, UUID> {
-    Optional<User> findByUsername(String username);
+  Optional<User> findByUsername(String username);
 
-    Optional<User> findByEmail(String email);
+  Optional<User> findByEmail(String email);
 
-    Boolean existsByUsername(String username);
+  Boolean existsByUsername(String username);
 
-    Boolean existsByEmail(String email);
+  Boolean existsByEmail(String email);
 }

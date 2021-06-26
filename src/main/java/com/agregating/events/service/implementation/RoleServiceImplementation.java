@@ -15,20 +15,19 @@ import java.util.Optional;
  *
  * @author Dmitri Tšornõi
  */
-
 @Service
 public class RoleServiceImplementation implements RoleService {
 
-    private final RoleRepository repository;
+  private final RoleRepository repository;
 
-    @Autowired
-    public RoleServiceImplementation(RoleRepository repository) {
-        this.repository = repository;
-    }
+  @Autowired
+  public RoleServiceImplementation(RoleRepository repository) {
+    this.repository = repository;
+  }
 
-    @Override
-    @Transactional
-    public Optional<Role> findByName(ERole name) {
-        return repository.findByName(name);
-    }
+  @Override
+  @Transactional
+  public Optional<Role> findByName(ERole name) {
+    return repository.findByName(name);
+  }
 }

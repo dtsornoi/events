@@ -11,7 +11,5 @@ import java.util.UUID;
  *
  * @author Dmitri Tšornõi
  */
-
 @Repository
-public interface EventRepository extends MongoRepository<Event, UUID> {
-}
+public interface EventRepository extends MongoRepository<Event, UUID> {}

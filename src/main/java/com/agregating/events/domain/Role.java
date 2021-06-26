@@ -11,17 +11,15 @@ import java.util.UUID;
 /**
  * POJO for storing role enums
  *
- *@author Dmitri Tšornõi
+ * @author Dmitri Tšornõi
  */
-
 @Document(collection = "roles")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Role {
 
-    @Id
-    private UUID id;
+  @Id private UUID id;
 
-    private ERole name;
+  private ERole name;
 }

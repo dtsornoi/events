@@ -6,15 +6,15 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface CustomUserService {
-    Optional<User> findByUsername(String username);
+  Optional<User> findByUsername(String username);
 
-    Optional<User> findByEmail(String email);
+  Optional<User> findByEmail(String email);
 
-    Optional<User> findById(UUID id);
+  Optional<User> findById(UUID id);
 
-    User saveUser(User user);
+  User saveUser(User user);
 
-    Boolean existsByUsername(String username);
+  Boolean existsByUsername(String username);
 
-    Boolean existsByEmail(String email);
+  Boolean existsByEmail(String email);
 }

@@ -11,7 +11,5 @@ import java.util.UUID;
  *
  * @author Dmitri Tšornõi
  */
-
 @Repository
-public interface CommentRepository extends MongoRepository<Comment, UUID> {
-}
+public interface CommentRepository extends MongoRepository<Comment, UUID> {}

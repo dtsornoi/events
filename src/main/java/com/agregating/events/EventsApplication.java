@@ -13,17 +13,16 @@ import java.util.UUID;
 @SpringBootApplication
 public class EventsApplication implements CommandLineRunner {
 
-	@Autowired
-	private RoleRepository repository;
+  @Autowired private RoleRepository repository;
 
-	public static void main(String[] args) {
-		SpringApplication.run(EventsApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(EventsApplication.class, args);
+  }
 
-	@Override
-	public void run(String... args) throws Exception {
-		repository.deleteAll();
-		repository.save(new Role(UUID.randomUUID(), ERole.ROLE_USER));
-		repository.save(new Role(UUID.randomUUID(), ERole.ROLE_ORGANIZER));
-	}
+  @Override
+  public void run(String... args) throws Exception {
+    repository.deleteAll();
+    repository.save(new Role(UUID.randomUUID(), ERole.ROLE_USER));
+    repository.save(new Role(UUID.randomUUID(), ERole.ROLE_ORGANIZER));
+  }
 }

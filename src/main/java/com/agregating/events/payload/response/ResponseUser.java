@@ -12,8 +12,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResponseUser {
-    private UUID id;
-    private String username;
-    private String email;
-    private Collection<Role> roles;
+  private UUID id;
+  private String username;
+  private String email;
+  private Collection<Role> roles;
 }

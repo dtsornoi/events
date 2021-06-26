@@ -10,11 +10,10 @@ import java.util.UUID;
  *
  * @author Dmitri Tšornõi
  */
-
 public interface CommentService {
-    List<Comment> findAllComments();
+  List<Comment> findAllComments();
 
-    Comment saveComment(Comment comment);
+  Comment saveComment(Comment comment);
 
-    boolean deleteComment(UUID id);
+  boolean deleteComment(UUID id);
 }

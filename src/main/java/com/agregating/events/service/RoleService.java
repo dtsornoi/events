@@ -10,7 +10,6 @@ import java.util.Optional;
  *
  * @author Dmitri Tšornõi
  */
-
 public interface RoleService {
-    Optional<Role> findByName(ERole name);
+  Optional<Role> findByName(ERole name);
 }

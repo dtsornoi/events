@@ -10,28 +10,28 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
- * implementation of UserDetailsService
- * for getting user from Repository by username
- * and returning CustomUserDetails
+ * implementation of UserDetailsService for getting user from Repository by username and returning
+ * CustomUserDetails
  *
  * @author Dmitri Tšornõi
  */
-
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final UserRepository repository;
+  private final UserRepository repository;
 
-    @Autowired
-    public CustomUserDetailsService(UserRepository repository) {
-        this.repository = repository;
-    }
+  @Autowired
+  public CustomUserDetailsService(UserRepository repository) {
+    this.repository = repository;
+  }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-       User user = repository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User  " + username + " not found"));
+  @Override
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    User user =
+        repository
+            .findByUsername(username)
+            .orElseThrow(() -> new UsernameNotFoundException("User  " + username + " not found"));
 
-        return new CustomUserDetails(user);
-    }
+    return new CustomUserDetails(user);
+  }
 }
