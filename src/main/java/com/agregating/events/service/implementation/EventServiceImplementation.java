@@ -3,7 +3,6 @@ package com.agregating.events.service.implementation;
 import com.agregating.events.domain.Event;
 import com.agregating.events.domain.User;
 import com.agregating.events.repository.EventRepository;
-import com.agregating.events.repository.UserRepository;
 import com.agregating.events.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,12 +22,10 @@ import java.util.UUID;
 public class EventServiceImplementation implements EventService {
 
   private final EventRepository repository;
-  private final UserRepository userRepository;
 
   @Autowired
-  public EventServiceImplementation(EventRepository repository, UserRepository userRepository) {
+  public EventServiceImplementation(EventRepository repository) {
     this.repository = repository;
-    this.userRepository = userRepository;
   }
 
   @Override

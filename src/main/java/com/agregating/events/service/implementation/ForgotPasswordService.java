@@ -19,12 +19,7 @@ public class ForgotPasswordService {
   }
 
   public Boolean verifyEmail(String email) {
-    User userFromDB =
-        userService
-            .findByEmail(email.toLowerCase().trim())
-            .orElseThrow(() -> new RuntimeException("User not found"));
-    System.out.println("hello");
-    return userFromDB.getEmail().equals(email);
+    return userService.existsByEmail(email.toLowerCase().trim());
   }
 
   public String resetPassword(String mail) {
